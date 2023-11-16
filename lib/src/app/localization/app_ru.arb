@@ -1,0 +1,13 @@
+{
+  "@@locale": "ru",
+  "appTitle": "questopia",
+
+  "@validators": {
+    "---------": "---------",
+    "description": "Validators"
+  },
+
+  "validatorsEmptyFieldsError": "Поле не должно быть пустым",
+  "validatorsIncorrectDateError": "Введите реальную дату",
+  "validatorsIncorrectEmailOrPhone": "Введите корректный email или номер телефона"
+}

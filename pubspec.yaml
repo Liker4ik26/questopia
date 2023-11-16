@@ -1,0 +1,42 @@
+name: questopia
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_svg: ^2.0.7
+  go_router: ^11.1.4
+  slider_button: ^2.0.0
+  flutter_multi_formatter: ^2.11.14
+  pin_code_fields: ^8.0.1
+  figma_squircle: ^0.5.3
+  flutter_hooks: ^0.20.1
+  hooks_riverpod: ^2.4.0
+  riverpod_annotation: ^2.1.5
+  cached_network_image: ^3.3.0
+
+  sealed_currencies: ^0.2.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+  riverpod_generator: ^2.3.2
+  riverpod_lint: ^2.1.0
+  custom_lint: ^0.5.3
+
+flutter:
+  generate: true
+  uses-material-design: true
+
+  assets:
+    - assets/icons/

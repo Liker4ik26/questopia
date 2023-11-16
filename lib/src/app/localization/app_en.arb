@@ -1,0 +1,13 @@
+{
+  "@@locale": "en",
+  "appTitle": "questopia",
+
+  "@segmentValidators": {
+    "---------": "---------",
+    "description": "Validators"
+  },
+
+  "validatorsEmptyFieldsError": "The field should not be empty",
+  "validatorsIncorrectDateError": "Enter a real date",
+  "validatorsIncorrectEmailOrPhone": "Enter the correct email or phone number"
+}
