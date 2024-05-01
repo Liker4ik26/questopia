@@ -2,44 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:questopia/src/app/styles/typography.dart';
 
 class AppTextTheme extends ThemeExtension<AppTextTheme> {
-  final TextStyle rubikRegular12;
-  final TextStyle rubikMedium24;
-  final TextStyle rubikMedium20;
-  final TextStyle rubikMedium16;
-  final TextStyle rubikMedium12;
-  final TextStyle rubikRegular10;
-  final TextStyle rubikRegular14;
-  final TextStyle rubikMedium14;
-  final TextStyle rubikSemiBold20;
-  final TextStyle rubikRegular16;
-  final TextStyle rubikSemiBold28;
+  final TextStyle rfDewiBold28;
+  final TextStyle rfDewiBold20;
+  final TextStyle rfDewiBold32;
+  final TextStyle rfDewiRegular12;
+  final TextStyle rfDewiRegular16;
+  final TextStyle rfDewiBold16;
+  final TextStyle rfDewiSemiBold16;
+  final TextStyle rfDewiRegular14;
+  final TextStyle rfDewiSemiBold14;
+  final TextStyle rfDewiSemiBold12;
+  final TextStyle rfDewiSemiBold20;
+  final TextStyle rfDewiRegular24;
+  final TextStyle rfDewiRegular10;
 
   AppTextTheme._({
-    required this.rubikRegular12,
-    required this.rubikMedium24,
-    required this.rubikMedium20,
-    required this.rubikMedium16,
-    required this.rubikMedium12,
-    required this.rubikRegular10,
-    required this.rubikRegular14,
-    required this.rubikMedium14,
-    required this.rubikSemiBold20,
-    required this.rubikRegular16,
-    required this.rubikSemiBold28,
+    required this.rfDewiBold28,
+    required this.rfDewiBold20,
+    required this.rfDewiBold32,
+    required this.rfDewiRegular12,
+    required this.rfDewiRegular16,
+    required this.rfDewiBold16,
+    required this.rfDewiSemiBold16,
+    required this.rfDewiRegular14,
+    required this.rfDewiSemiBold14,
+    required this.rfDewiSemiBold12,
+    required this.rfDewiSemiBold20,
+    required this.rfDewiRegular24,
+    required this.rfDewiRegular10,
   });
 
   AppTextTheme.base()
-      : rubikRegular12 = AppTextStyle.rubikRegular12.value,
-        rubikMedium24 = AppTextStyle.rubikMedium24.value,
-        rubikMedium20 = AppTextStyle.rubikMedium20.value,
-        rubikMedium16 = AppTextStyle.rubikMedium16.value,
-        rubikMedium12 = AppTextStyle.rubikMedium12.value,
-        rubikRegular10 = AppTextStyle.rubikRegular10.value,
-        rubikRegular14 = AppTextStyle.rubikRegular14.value,
-        rubikMedium14 = AppTextStyle.rubikMedium14.value,
-        rubikSemiBold20 = AppTextStyle.rubikSemiBold20.value,
-        rubikRegular16 = AppTextStyle.rubikRegular16.value,
-        rubikSemiBold28 = AppTextStyle.rubikSemiBold28.value;
+      : rfDewiBold28 = AppTextStyle.rfDewiBold28.value,
+        rfDewiBold20 = AppTextStyle.rfDewiBold20.value,
+        rfDewiBold32 = AppTextStyle.rfDewiBold32.value,
+        rfDewiRegular12 = AppTextStyle.rfDewiRegular12.value,
+        rfDewiRegular16 = AppTextStyle.rfDewiRegular16.value,
+        rfDewiBold16 = AppTextStyle.rfDewiBold16.value,
+        rfDewiSemiBold16 = AppTextStyle.rfDewiSemiBold16.value,
+        rfDewiRegular14 = AppTextStyle.rfDewiRegular14.value,
+        rfDewiSemiBold14 = AppTextStyle.rfDewiSemiBold14.value,
+        rfDewiSemiBold12 = AppTextStyle.rfDewiSemiBold12.value,
+        rfDewiSemiBold20 = AppTextStyle.rfDewiSemiBold20.value,
+        rfDewiRegular24 = AppTextStyle.rfDewiRegular24.value,
+        rfDewiRegular10 = AppTextStyle.rfDewiRegular10.value;
 
   @override
   ThemeExtension<AppTextTheme> lerp(
@@ -51,19 +57,20 @@ class AppTextTheme extends ThemeExtension<AppTextTheme> {
     }
 
     return AppTextTheme._(
-      rubikRegular12: TextStyle.lerp(rubikRegular12, other.rubikRegular12, t)!,
-      rubikMedium24: TextStyle.lerp(rubikMedium24, other.rubikMedium24, t)!,
-      rubikMedium20: TextStyle.lerp(rubikMedium20, other.rubikMedium20, t)!,
-      rubikMedium16: TextStyle.lerp(rubikMedium16, other.rubikMedium16, t)!,
-      rubikMedium12: TextStyle.lerp(rubikMedium12, other.rubikMedium12, t)!,
-      rubikRegular10: TextStyle.lerp(rubikRegular10, other.rubikRegular10, t)!,
-      rubikRegular14: TextStyle.lerp(rubikRegular14, other.rubikRegular14, t)!,
-      rubikMedium14: TextStyle.lerp(rubikMedium14, other.rubikMedium14, t)!,
-      rubikSemiBold20:
-          TextStyle.lerp(rubikSemiBold20, other.rubikSemiBold20, t)!,
-      rubikRegular16: TextStyle.lerp(rubikRegular16, other.rubikRegular16, t)!,
-      rubikSemiBold28:
-          TextStyle.lerp(rubikSemiBold28, other.rubikSemiBold28, t)!,
+      rfDewiBold28: TextStyle.lerp(rfDewiBold28, other.rfDewiBold28, t)!,
+      rfDewiBold20: TextStyle.lerp(rfDewiBold20, other.rfDewiBold20, t)!,
+      rfDewiBold32: TextStyle.lerp(rfDewiBold32, other.rfDewiBold32, t)!,
+      rfDewiRegular12: TextStyle.lerp(rfDewiRegular12, other.rfDewiRegular12, t)!,
+      rfDewiRegular16: TextStyle.lerp(rfDewiRegular16, other.rfDewiRegular16, t)!,
+      rfDewiBold16: TextStyle.lerp(rfDewiBold16, other.rfDewiBold16, t)!,
+      rfDewiSemiBold16: TextStyle.lerp(rfDewiSemiBold16, other.rfDewiSemiBold16, t)!,
+      rfDewiRegular14: TextStyle.lerp(rfDewiRegular14, other.rfDewiRegular14, t)!,
+      rfDewiSemiBold14:
+          TextStyle.lerp(rfDewiSemiBold14, other.rfDewiSemiBold14, t)!,
+      rfDewiSemiBold12: TextStyle.lerp(rfDewiSemiBold12, other.rfDewiRegular16, t)!,
+      rfDewiSemiBold20: TextStyle.lerp(rfDewiSemiBold20, other.rfDewiSemiBold20, t)!,
+      rfDewiRegular24: TextStyle.lerp(rfDewiRegular24, other.rfDewiRegular24, t)!,
+      rfDewiRegular10: TextStyle.lerp(rfDewiRegular10, other.rfDewiRegular10, t)!,
     );
   }
 
@@ -77,27 +84,31 @@ class AppTextTheme extends ThemeExtension<AppTextTheme> {
     TextStyle? regular12,
     TextStyle? medium24,
     TextStyle? medium20,
+    TextStyle? bold32,
     TextStyle? medium16,
     TextStyle? medium12,
     TextStyle? regular10,
     TextStyle? regular14,
     TextStyle? medium14,
     TextStyle? semiBold20,
-    TextStyle? regular16,
+    TextStyle? semiBold12,
     TextStyle? semiBold28,
+    TextStyle? regular24,
   }) {
     return AppTextTheme._(
-      rubikRegular12: regular12 ?? rubikRegular12,
-      rubikMedium24: medium24 ?? rubikMedium24,
-      rubikMedium20: regular16 ?? rubikMedium20,
-      rubikMedium16: medium16 ?? rubikMedium16,
-      rubikMedium12: medium12 ?? rubikMedium12,
-      rubikRegular10: regular10 ?? rubikRegular10,
-      rubikRegular14: regular14 ?? rubikRegular14,
-      rubikMedium14: medium14 ?? rubikMedium14,
-      rubikSemiBold20: semiBold20 ?? rubikSemiBold20,
-      rubikRegular16: regular16 ?? rubikRegular16,
-      rubikSemiBold28: semiBold28 ?? rubikSemiBold28,
+      rfDewiBold28: regular12 ?? rfDewiBold28,
+      rfDewiBold20: medium24 ?? rfDewiBold20,
+      rfDewiBold32: bold32 ?? rfDewiBold32,
+      rfDewiRegular12: medium16 ?? rfDewiRegular12,
+      rfDewiRegular16: medium12 ?? rfDewiRegular16,
+      rfDewiBold16: regular10 ?? rfDewiBold16,
+      rfDewiSemiBold16: regular14 ?? rfDewiSemiBold16,
+      rfDewiRegular14: medium14 ?? rfDewiRegular14,
+      rfDewiSemiBold14: semiBold20 ?? rfDewiSemiBold14,
+      rfDewiSemiBold12: semiBold12 ?? rfDewiSemiBold12,
+      rfDewiSemiBold20: semiBold28 ?? rfDewiSemiBold20,
+      rfDewiRegular24: semiBold28 ?? rfDewiRegular24,
+      rfDewiRegular10: regular10 ?? rfDewiRegular10,
     );
   }
 }
