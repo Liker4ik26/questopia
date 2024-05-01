@@ -9,5 +9,14 @@
 
   "validatorsEmptyFieldsError": "The field should not be empty",
   "validatorsIncorrectDateError": "Enter a real date",
-  "validatorsIncorrectEmailOrPhone": "Enter the correct email or phone number"
+  "validatorsIncorrectEmailOrPhone": "Enter the correct email or phone number",
+  "@segmentSignScreen": {
+    "---------": "---------",
+    "description": "Sign screen"
+  },
+  "signScreenTitle": "Log in",
+  "signScreenEmail": "Mail",
+  "signScreenPassword": "Password",
+  "signScreenForgotPassword": "Forgot your password?",
+  "signScreenLogIn": "Log in to your account"
 }
