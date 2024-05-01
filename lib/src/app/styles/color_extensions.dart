@@ -3,90 +3,72 @@ import 'package:questopia/src/app/styles/colors.dart';
 
 @immutable
 class AppColorScheme extends ThemeExtension<AppColorScheme> {
-  AppColorScheme.light()
-      : backgroundColor = Colors.white,
-        tertiaryContainer = AppColors.vampireGrey,
-        onPrimary = AppColors.whiteSmoke,
-        secondary = Colors.white,
-        onBackground = AppColors.creole,
-        onSecondary = AppColors.dune,
-        error = AppColors.deepCoral,
-        onTertiary = AppColors.leafyGreen,
-        primary = Colors.black,
-        tertiary = AppColors.turquoiseBlue;
-
-   AppColorScheme.dark()
-      : backgroundColor = AppColors.darkJungleGreen,
-        tertiaryContainer = AppColors.vampireGrey,
-        onPrimary = AppColors.balticSea,
+  const AppColorScheme.light()
+      : backgroundColor = AppColors.onyx,
+        onPrimary = AppColors.mikadoYellow,
         secondary = Colors.black,
-        onBackground = AppColors.creole,
-        onSecondary = AppColors.dune,
+        tertiary = AppColors.leafyGreen,
+        onBackground = AppColors.silverChalice,
+        onSecondary = AppColors.darkJungleGreen,
         error = AppColors.deepCoral,
-        onTertiary = AppColors.leafyGreen,
-        tertiary = AppColors.turquoiseBlue,
+        onTertiary = AppColors.dune,
+        primary = Colors.white;
+
+  const AppColorScheme.dark()
+      : backgroundColor = AppColors.onyx,
+        onPrimary = AppColors.mikadoYellow,
+        secondary = Colors.black,
+        tertiary = AppColors.leafyGreen,
+        onBackground = AppColors.silverChalice,
+        onSecondary = AppColors.darkJungleGreen,
+        error = AppColors.deepCoral,
+        onTertiary = AppColors.dune,
         primary = Colors.white;
 
   const AppColorScheme._({
     required this.backgroundColor,
-    required this.tertiaryContainer,
     required this.onPrimary,
     required this.secondary,
+    required this.tertiary,
     required this.onBackground,
     required this.onSecondary,
     required this.error,
     required this.onTertiary,
     required this.primary,
-    required this.tertiary,
   });
 
-  // background: AppColors.darkJungleGreen,
-  // tertiaryContainer: AppColors.vampireGrey,
-  // primary: Colors.black,
-  // onPrimary: AppColors.balticSea,
-  // secondary: Colors.white,
-  // onBackground: AppColors.creole,
-  // onSecondary: AppColors.dune,
-  // error: AppColors.deepCoral,
-  // tertiary: AppColors.turquoiseBlue,
-  // onTertiary: AppColors.leafyGreen,
-  //
-
   final Color backgroundColor;
-  final Color tertiaryContainer;
-  final Color primary;
   final Color onPrimary;
   final Color secondary;
+  final Color tertiary;
   final Color onBackground;
   final Color onSecondary;
   final Color error;
-  final Color tertiary;
   final Color onTertiary;
+  final Color primary;
 
   @override
   ThemeExtension<AppColorScheme> copyWith({
     Color? background,
-    Color? tertiaryContainerColor,
-    Color? primaryColor,
     Color? onPrimaryColor,
     Color? secondaryColor,
+    Color? tertiaryColor,
     Color? onBackgroundColor,
     Color? onSecondaryColor,
     Color? errorColor,
-    Color? tertiaryColor,
     Color? onTertiaryColor,
+    Color? primaryColor,
   }) {
     return AppColorScheme._(
       backgroundColor: background ?? backgroundColor,
-      tertiaryContainer: tertiaryContainerColor ?? tertiaryContainer,
       onPrimary: onPrimaryColor ?? onPrimary,
       secondary: secondaryColor ?? secondary,
+      tertiary: tertiaryColor ?? tertiary,
       onBackground: onBackgroundColor ?? onBackground,
       onSecondary: onSecondaryColor ?? onSecondary,
       error: errorColor ?? error,
       onTertiary: onTertiaryColor ?? onTertiary,
       primary: primaryColor ?? primary,
-      tertiary: tertiaryColor ?? tertiary,
     );
   }
 
@@ -101,40 +83,14 @@ class AppColorScheme extends ThemeExtension<AppColorScheme> {
 
     return AppColorScheme._(
       backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t)!,
-      tertiaryContainer:
-          Color.lerp(tertiaryContainer, other.tertiaryContainer, t)!,
-      onPrimary: Color.lerp(
-        onPrimary,
-        other.onPrimary,
-        t,
-      )!,
+      onPrimary: Color.lerp(onPrimary, other.onPrimary, t)!,
+      secondary: Color.lerp(secondary, other.secondary, t)!,
+      tertiary: Color.lerp(tertiary, other.tertiary, t)!,
       onBackground: Color.lerp(onBackground, other.onBackground, t)!,
-      onSecondary: Color.lerp(
-        onSecondary,
-        other.onSecondary,
-        t,
-      )!,
-      error: Color.lerp(
-        error,
-        other.error,
-        t,
-      )!,
-      secondary: Color.lerp(
-        secondary,
-        other.secondary,
-        t,
-      )!,
+      onSecondary: Color.lerp(onSecondary, other.onSecondary, t)!,
+      error: Color.lerp(error, other.error, t)!,
       onTertiary: Color.lerp(onTertiary, other.onTertiary, t)!,
-      primary: Color.lerp(
-        primary,
-        other.primary,
-        t,
-      )!,
-      tertiary: Color.lerp(
-        tertiary,
-        other.tertiary,
-        t,
-      )!,
+      primary: Color.lerp(primary, other.primary, t)!,
     );
   }
 
