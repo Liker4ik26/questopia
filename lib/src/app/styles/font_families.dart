@@ -1,5 +1,5 @@
 abstract class FontFamilies {
   const FontFamilies._();
 
-  static const rubik = 'Rubik';
+  static const rfDewi = 'RF Dewi';
 }

@@ -5,14 +5,13 @@ import 'package:questopia/src/app/styles/text_extensions.dart';
 abstract class AppThemes {
   const AppThemes._();
 
-  static final light = ThemeData(
+  static final dark = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
     colorScheme: ColorScheme.fromSwatch().copyWith(
-      background: AppColorScheme.light().backgroundColor,
+      background: const AppColorScheme.light().backgroundColor,
     ),
     extensions: <ThemeExtension<dynamic>>[
-      _lightColorScheme,
       _darkColorScheme,
       _textTheme,
     ],
@@ -21,9 +20,12 @@ abstract class AppThemes {
       elevation: 0,
       scrolledUnderElevation: 0,
     ),
+    textSelectionTheme: TextSelectionThemeData(
+      selectionColor: _darkColorScheme.tertiary.withOpacity(.4),
+      selectionHandleColor:_darkColorScheme.tertiary,
+    ),
   );
 
-  static final _lightColorScheme = AppColorScheme.light();
   static final _darkColorScheme = AppColorScheme.dark();
   static final _textTheme = AppTextTheme.base();
 }
