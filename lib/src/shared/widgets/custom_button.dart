@@ -9,10 +9,12 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.title,
     this.onPressed,
+    this.bgColor,
   });
 
   final String title;
   final void Function()? onPressed;
+  final Color? bgColor;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,8 @@ class CustomButton extends StatelessWidget {
       child: TextButton(
         onPressed: onPressed,
         style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(context.color.tertiary),
+          backgroundColor:
+              MaterialStatePropertyAll(bgColor ?? context.color.tertiary),
           shape: MaterialStatePropertyAll(
             RoundedRectangleBorder(
               borderRadius: SmoothBorderRadius(
