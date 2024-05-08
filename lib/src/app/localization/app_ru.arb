@@ -16,5 +16,15 @@
   "signScreenEmail": "Почта",
   "signScreenPassword": "Пароль",
   "signScreenForgotPassword": "Забыли пароль?",
-  "signScreenLogIn": "Войти в аккаунт"
- }
+  "signScreenLogIn": "Войти в аккаунт",
+  "@segmentSignUpScreen": {
+    "---------": "---------",
+    "description": "Sign up screen"
+  },
+  "signUpScreenTitle": "Регистрация",
+  "signUpScreenFio": "ФИО",
+  "signUpScreenEmail": "Почта",
+  "signUpScreenPassword": "Пароль",
+  "signUpScreenGetIntoAccount": "Войти в аккаунт",
+  "signUpScreenRegister": "Зарегистрироваться"
+}
