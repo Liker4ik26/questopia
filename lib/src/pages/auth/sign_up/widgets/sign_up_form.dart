@@ -4,9 +4,8 @@ import 'package:questopia/src/shared/extensions/widget_modifier.dart';
 import 'package:questopia/src/shared/utils/validators.dart';
 import 'package:questopia/src/shared/widgets/custom_text_field.dart';
 
-class SignInForm extends StatelessWidget {
-  const SignInForm(
-      {super.key, required this.onContinue});
+class SignUpForm extends StatelessWidget {
+  const SignUpForm({super.key, required this.onContinue});
 
   final VoidCallback onContinue;
 
@@ -17,7 +16,20 @@ class SignInForm extends StatelessWidget {
         children: [
           CustomTextField(
             textInputAction: TextInputAction.next,
-            title: context.tr.signScreenEmail,
+            title: context.tr.signUpScreenFio,
+            validator: (value) {
+              return emptyValidator(
+                context,
+                value,
+              );
+            },
+          ).paddingSymmetric(horizontal: 24),
+          const SizedBox(
+            height: 16,
+          ),
+          CustomTextField(
+            textInputAction: TextInputAction.next,
+            title: context.tr.signUpScreenEmail,
             validator: (value) {
               return emptyValidator(
                 context,
@@ -30,7 +42,7 @@ class SignInForm extends StatelessWidget {
           ),
           CustomTextField(
             textInputAction: TextInputAction.done,
-            title: context.tr.signScreenPassword,
+            title: context.tr.signUpScreenPassword,
             validator: (value) {
               return emptyValidator(
                 context,

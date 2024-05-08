@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:questopia/src/app/routes/routes.dart';
 import 'package:questopia/src/pages/auth/sign_in/sign_in_screen.dart';
+import 'package:questopia/src/pages/auth/sign_up/sign_up_screen.dart';
+import 'package:questopia/src/pages/main/main_screen.dart';
 
 export 'package:go_router/go_router.dart';
 
 abstract class Routes {
   const Routes._();
   static const signInRoute = '/signIn';
+  static const signUpRoute = '/signUp';
   static const mainRoute = '/main';
 
   static CustomTransitionPage _buildPageWithDefaultTransition<T>({
@@ -46,7 +49,7 @@ abstract class Routes {
   static final _rootNavigatorKey = GlobalKey<NavigatorState>();
 
   static final router = GoRouter(
-    initialLocation: signInRoute,
+    initialLocation: mainRoute,
     navigatorKey: _rootNavigatorKey,
     // refreshListenable: Get.find<AuthController>().isLoggedIn,
     // redirect: (context, state) {
@@ -101,6 +104,14 @@ abstract class Routes {
       GoRoute(
         path: signInRoute,
         pageBuilder: _defaultPageBuilder(const SignInScreen()),
+      ),
+      GoRoute(
+        path: signUpRoute,
+        pageBuilder: _defaultPageBuilder(const SignUpScreen()),
+      ),
+      GoRoute(
+        path: mainRoute,
+        pageBuilder: _defaultPageBuilder(const MainScreen()),
       ),
     ],
   );
