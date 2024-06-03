@@ -1,0 +1,35 @@
+{
+  "@@locale": "ru",
+  "appTitle": "questopia",
+  "@validators": {
+    "---------": "---------",
+    "description": "Validators"
+  },
+  "validatorsEmptyFieldsError": "Поле не должно быть пустым",
+  "validatorsIncorrectDateError": "Введите реальную дату",
+  "validatorsIncorrectEmailOrPhone": "Введите корректную почту",
+  "validatorsIncorrectPhone": "Введите корректный номер телефона",
+  "validatorsPasswordError": "Пароль должен содержать не менее 6 символов",
+  "@segmentSignScreen": {
+    "---------": "---------",
+    "description": "Sign screen"
+  },
+  "signScreenTitle": "Вход",
+  "signScreenEmail": "Почта",
+  "signScreenPassword": "Пароль",
+  "signScreenForgotPassword": "Забыли пароль?",
+  "signScreenLogIn": "Войти в аккаунт",
+  "@segmentSignUpScreen": {
+    "---------": "---------",
+    "description": "Sign up screen"
+  },
+  "signUpScreenTitle": "Регистрация",
+  "signUpScreenFio": "ФИО",
+  "signUpScreenEmail": "Почта",
+  "signUpScreenPassword": "Пароль",
+  "signUpScreenGetIntoAccount": "Войти в аккаунт",
+  "signUpScreenRegister": "Зарегистрироваться",
+  "signUpScreenYouRegistered": "Вы зарегистрированы, подтвердите свою почту , мы отправили вам письмо",
+  "signUpScreenErrorHasOccurred": "Возникла ошибка",
+  "signUpScreenRetry": "Попробуйте зайти позже"
+}

@@ -1,0 +1,38 @@
+{
+  "@@locale": "en",
+  "appTitle": "questopia",
+
+  "@segmentValidators": {
+    "---------": "---------",
+    "description": "Validators"
+  },
+
+  "validatorsEmptyFieldsError": "The field should not be empty",
+  "validatorsIncorrectDateError": "Enter a real date",
+  "validatorsIncorrectEmailOrPhone": "Enter the correct email",
+  "validatorsIncorrectPhone": "Enter the correct phone",
+  "validatorsPasswordError": "The password must contain at least 6 characters",
+  "@segmentSignScreen": {
+    "---------": "---------",
+    "description": "Sign in screen"
+  },
+  "signScreenTitle": "Log in",
+  "signScreenEmail": "Mail",
+  "signScreenPassword": "Password",
+  "signScreenForgotPassword": "Forgot your password?",
+  "signScreenLogIn": "Log in to your account",
+  "@segmentSignUpScreen": {
+    "---------": "---------",
+    "description": "Sign up screen"
+  },
+  "signUpScreenTitle": "Registration",
+  "signUpScreenFio": "FIO",
+  "signUpScreenEmail": "Mail",
+  "signUpScreenPassword": "Password",
+  "signUpScreenGetIntoAccount": "Get into the account",
+  "signUpScreenRegister": "Register",
+  "signUpScreenYouRegistered": "You are registered, confirm your email, we have sent you an email",
+  "signUpScreenErrorHasOccurred": "An error has occurred",
+  "signUpScreenRetry": "Try to come back later"
+
+}
