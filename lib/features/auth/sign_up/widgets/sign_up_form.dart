@@ -36,6 +36,7 @@ class _SignUpFormState extends State<SignUpForm> {
           CustomTextField(
             textController: _email,
             textInputAction: TextInputAction.next,
+            textInputType: TextInputType.emailAddress,
             hint: context.tr.signUpScreenEmail,
             validator: (value) {
               return mobileAndEmailValidator(context, value);

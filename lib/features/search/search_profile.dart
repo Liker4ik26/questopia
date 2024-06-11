@@ -42,7 +42,6 @@ class SearchScreen extends StatelessWidget {
         title: Text('Поиск', style: context.text.rfDewiBold28),
       ),
       body: CustomScrollView(
-        physics: const NeverScrollableScrollPhysics(),
         slivers: [
           SliverToBoxAdapter(
             child: Text('Поиск', style: context.text.rfDewiBold28)
