@@ -22,6 +22,7 @@ class _SignUpFormState extends State<SignUpForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  bool isPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class _SignUpFormState extends State<SignUpForm> {
           CustomTextField(
             textController: _email,
             textInputAction: TextInputAction.next,
-            title: context.tr.signUpScreenEmail,
+            hint: context.tr.signUpScreenEmail,
             validator: (value) {
               return mobileAndEmailValidator(context, value);
             },
@@ -46,8 +47,19 @@ class _SignUpFormState extends State<SignUpForm> {
           CustomTextField(
             textController: _password,
             textInputAction: TextInputAction.done,
-            title: context.tr.signUpScreenPassword,
-            isPassword: true,
+            hint: context.tr.signUpScreenPassword,
+            suffixIcon: IconButton(
+              icon: Icon(
+                Icons.remove_red_eye_outlined,
+                color: context.color.primary,
+              ),
+              onPressed: () {
+                setState(() {
+                  isPassword = !isPassword;
+                });
+              },
+            ),
+            isPassword: isPassword,
             validator: (value) {
               return passwordValidator(
                 context,
@@ -72,9 +84,7 @@ class _SignUpFormState extends State<SignUpForm> {
                 },
               );
             }
-            if (state is SignUpLoadedState) {
-              context.go(Routes.home);
-            }
+            if (state is SignUpLoadedState) {}
             if (state is SignUpLoadingState) {
               return CustomButton(
                 child: CircularProgressIndicator(
@@ -101,7 +111,7 @@ class _SignUpFormState extends State<SignUpForm> {
           CustomButton(
             title: context.tr.signUpScreenGetIntoAccount,
             bgColor: context.color.onTertiary,
-            onPressed: () => context.push(Routes.signInRoute),
+            onPressed: () => context.pop(),
           ).paddingOnly(
             left: 24,
             right: 24,

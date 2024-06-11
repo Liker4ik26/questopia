@@ -1,7 +1,6 @@
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:questopia/core/app/styles/colors.dart';
 import 'package:questopia/core/app/styles/dimensions.dart';
 import 'package:questopia/core/extensions/context_extensions.dart';
@@ -16,7 +15,6 @@ class CustomTextField extends StatelessWidget {
     this.textController,
     required this.textInputAction,
     this.onFieldSubmitted,
-    required this.title,
     this.inputFormatters,
     this.validator,
     this.hintStyle,
@@ -32,7 +30,6 @@ class CustomTextField extends StatelessWidget {
   final void Function()? onFieldSubmitted;
   final TextInputAction textInputAction;
   final TextEditingController? textController;
-  final String title;
   final TextStyle? titleStyle;
   final TextStyle? textStyle;
   final TextStyle? hintStyle;
@@ -50,75 +47,63 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        TextFormField(
-          controller: textController,
-          textInputAction: textInputAction,
-          autofocus: autofocus,
-          enabled: enabled,
-          textAlignVertical: TextAlignVertical.bottom,
-          style: textStyle ?? context.text.rfDewiRegular16,
-          onChanged: onChanged,
-          decoration: InputDecoration(
-            prefixText: prefixText,
-            prefixStyle: context.text.rfDewiRegular16,
-            hintText: hint,
-            suffixIcon: suffixIcon,
-            fillColor: bgColor ?? context.color.onSecondary,
-            filled: true,
-            enabledBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: Colors.transparent,
-              ),
-              borderRadius: SmoothBorderRadius(
-                cornerRadius: AppDimensions.small,
-                cornerSmoothing: 1,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: Colors.transparent,
-              ),
-              borderRadius: SmoothBorderRadius(
-                cornerRadius: AppDimensions.small,
-                cornerSmoothing: 1,
-              ),
-            ),
-            border: OutlineInputBorder(
-              borderSide: const BorderSide(
-                color: Colors.transparent,
-              ),
-              borderRadius: SmoothBorderRadius(
-                cornerRadius: AppDimensions.small,
-                cornerSmoothing: 1,
-              ),
-            ),
-            hintStyle: hintStyle ??
-                context.text.rfDewiRegular16.copyWith(
-                  color: context.color.primary.withOpacity(0.4),
-                ),
+    return TextFormField(
+      controller: textController,
+      textInputAction: textInputAction,
+      autofocus: autofocus,
+      enabled: enabled,
+      textAlignVertical: TextAlignVertical.center,
+      style: textStyle ?? context.text.rfDewiRegular16,
+      onChanged: onChanged,
+      textAlign: TextAlign.start,
+      decoration: InputDecoration(
+        isDense: true,
+        prefixText: prefixText,
+        prefixStyle: context.text.rfDewiRegular16,
+        hintText: hint,
+        suffixIcon: suffixIcon,
+        fillColor: bgColor ?? context.color.onSecondary,
+        filled: true,
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.transparent,
           ),
-          obscureText: isPassword ?? false,
-          cursorColor: AppColors.leafyGreen,
-          validator: validator,
-          onFieldSubmitted: (s) {
-            onFieldSubmitted?.call();
-          },
-          inputFormatters: inputFormatters,
-          keyboardType: textInputType,
-        ),
-        Text(
-          title,
-          style: context.text.rfDewiRegular12.copyWith(
-            color: Colors.white.withOpacity(.4),
+          borderRadius: SmoothBorderRadius(
+            cornerRadius: AppDimensions.small,
+            cornerSmoothing: 1,
           ),
-        ).paddingOnly(
-          left: 12,
-          top: 6,
-          bottom: 6,
         ),
-      ],
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.transparent,
+          ),
+          borderRadius: SmoothBorderRadius(
+            cornerRadius: AppDimensions.small,
+            cornerSmoothing: 1,
+          ),
+        ),
+        border: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: Colors.transparent,
+          ),
+          borderRadius: SmoothBorderRadius(
+            cornerRadius: AppDimensions.small,
+            cornerSmoothing: 1,
+          ),
+        ),
+        hintStyle: hintStyle ??
+            context.text.rfDewiRegular16.copyWith(
+              color: context.color.primary.withOpacity(0.4),
+            ),
+      ),
+      obscureText: isPassword ?? false,
+      cursorColor: AppColors.leafyGreen,
+      validator: validator,
+      onFieldSubmitted: (s) {
+        onFieldSubmitted?.call();
+      },
+      inputFormatters: inputFormatters,
+      keyboardType: textInputType,
     );
   }
 }

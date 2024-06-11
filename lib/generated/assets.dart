@@ -2,6 +2,7 @@
 class Assets {
   Assets._();
 
+  static const String iconsAppIcon = 'assets/icons/app_icon.png';
   static const String iconsArmchair = 'assets/icons/armchair.svg';
   static const String iconsCameraAdd = 'assets/icons/camera_add.svg';
   static const String iconsCar = 'assets/icons/car.svg';
@@ -26,6 +27,8 @@ class Assets {
   static const String iconsStart = 'assets/icons/start.svg';
   static const String iconsUser = 'assets/icons/user.svg';
   static const String iconsWifi = 'assets/icons/wifi.svg';
+  static const String imagesEmptyFavorite = 'assets/images/empty_favorite.png';
+  static const String imagesSearchScreen = 'assets/images/search_screen.png';
   static const String questopia = '.env';
 
 }

@@ -16,19 +16,6 @@ final class ReservedQuestLoadingState extends ReservedQuestState {
   const ReservedQuestLoadingState();
 }
 
-final class DeleteReservedQuestSuccessState extends ReservedQuestState {
-  const DeleteReservedQuestSuccessState();
-}
-
-final class DeleteReservedQuestLoadingState extends ReservedQuestState {
-  const DeleteReservedQuestLoadingState();
-}
-
-final class DeleteReservedQuestErrorState extends ReservedQuestState {
-  const DeleteReservedQuestErrorState({required this.error});
-
-  final Object? error;
-}
 
 final class ReservedQuestLoadedState extends ReservedQuestState {
   const ReservedQuestLoadedState({

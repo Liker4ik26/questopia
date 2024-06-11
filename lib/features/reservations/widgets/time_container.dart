@@ -12,14 +12,26 @@ class TimeContainer extends StatelessWidget {
     required this.isSelected,
     required this.slotDomain,
     this.onTap,
+    required this.chosenDate,
   });
 
   final bool isSelected;
   final SlotDomain slotDomain;
+  final DateTime chosenDate;
   final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
+    final slotNoActive = DateTime.now().isAfter(
+      DateTime(
+          DateTime.now().year,
+          DateTime.now().month,
+          DateTime.now().day,
+          int.parse(slotDomain.time.split(':')[0]),
+          int.parse(slotDomain.time.split(':')[1]),
+          int.parse(slotDomain.time.split(':')[2])),
+    );
+    final DateTime now = DateTime.now();
     return Material(
       shape: SmoothRectangleBorder(
         borderRadius: SmoothBorderRadius(
@@ -27,35 +39,40 @@ class TimeContainer extends StatelessWidget {
           cornerSmoothing: 1,
         ),
       ),
-      color: slotDomain.status == false
-          ? isSelected
+      color: slotDomain.status == true ||
+              slotNoActive && now.isDateEqual(chosenDate)
+          ? context.color.backgroundColor.withOpacity(.5)
+          : isSelected
               ? context.color.tertiary
-              : context.color.onTertiary
-          : context.color.backgroundColor.withOpacity(.5),
+              : context.color.onTertiary,
       child: InkWell(
         borderRadius: SmoothBorderRadius(
           cornerRadius: AppDimensions.tinyMedium,
           cornerSmoothing: 1,
         ),
-        onTap: slotDomain.status == false ? onTap : null,
+        onTap: slotDomain.status == true ||
+                slotNoActive && now.isDateEqual(chosenDate)
+            ? null
+            : onTap,
         child: Column(
           children: [
             Text(
               convertTimeFormat(slotDomain.time),
               style: context.text.rfDewiBold16.copyWith(
-                color: slotDomain.status == false
-                    ? context.color.primary
-                    : context.color.primary.withOpacity(.4),
+                color: slotDomain.status == true ||
+                        slotNoActive && now.isDateEqual(chosenDate)
+                    ? context.color.primary.withOpacity(.4)
+                    : context.color.primary,
               ),
             ),
             const SizedBox(height: 8),
             Text(
               '${slotDomain.price.price} ₽',
               style: context.text.rfDewiRegular12.copyWith(
-                color: slotDomain.status == false
-                    ? context.color.primary
-                    : context.color.primary.withOpacity(.4),
-              ),
+                  color: slotDomain.status == true ||
+                          slotNoActive && now.isDateEqual(chosenDate)
+                      ? context.color.primary.withOpacity(.4)
+                      : context.color.primary),
             ),
           ],
         ).paddingSymmetric(
@@ -81,4 +98,10 @@ String convertTimeFormat(String timeString) {
   }
 
   return 'Invalid time format';
+}
+
+extension CompareDates on DateTime {
+  bool isDateEqual(DateTime date2) {
+    return year == date2.year && month == date2.month && day == date2.day;
+  }
 }

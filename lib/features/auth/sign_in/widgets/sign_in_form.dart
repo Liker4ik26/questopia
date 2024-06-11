@@ -21,6 +21,7 @@ class _SignInFormState extends State<SignInForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  bool isPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,7 @@ class _SignInFormState extends State<SignInForm> {
           CustomTextField(
             textController: _email,
             textInputAction: TextInputAction.next,
-            title: context.tr.signUpScreenEmail,
+            hint: context.tr.signUpScreenEmail,
             validator: (value) {
               return mobileAndEmailValidator(context, value);
             },
@@ -45,8 +46,19 @@ class _SignInFormState extends State<SignInForm> {
           CustomTextField(
             textController: _password,
             textInputAction: TextInputAction.done,
-            title: context.tr.signUpScreenPassword,
-            isPassword: true,
+            suffixIcon: IconButton(
+              icon: Icon(
+                Icons.remove_red_eye_outlined,
+                color: context.color.primary,
+              ),
+              onPressed: () {
+                setState(() {
+                  isPassword = !isPassword;
+                });
+              },
+            ),
+            hint: context.tr.signUpScreenPassword,
+            isPassword: isPassword,
             validator: (value) {
               return passwordValidator(
                 context,
@@ -54,6 +66,21 @@ class _SignInFormState extends State<SignInForm> {
               );
             },
           ).paddingSymmetric(horizontal: 24),
+          const SizedBox(
+            height: 8,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              TextButton(
+                onPressed: () {},
+                child: Text(
+                  'Забыли пароль?',
+                  style: context.text.rfDewiSemiBold16.copyWith(color: context.color.primary.withOpacity(.4),)
+                ),
+              ).paddingSymmetric(horizontal: 24),
+            ],
+          ),
           const SizedBox(
             height: 24,
           ),
@@ -92,9 +119,7 @@ class _SignInFormState extends State<SignInForm> {
               );
             },
             listener: (context, state) {
-              if (state is SignInLoadedState) {
-                context.go(Routes.home);
-              }
+              if (state is SignInLoadedState) {}
             },
           ).paddingOnly(
             left: 24,

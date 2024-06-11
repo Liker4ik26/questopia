@@ -71,10 +71,7 @@ class FavouritesCardWidget extends StatelessWidget {
                     children: [
                       DetailsButton(text: 'от ${questDomain.price} ₽'),
                       const SizedBox(width: 8),
-                      SizedBox(
-                        width: 50,
-                        child: DetailsButton(text: '${questDomain.ageLimit} +'),
-                      ),
+                      DetailsButton(text: '${questDomain.ageLimit} +'),
                       const Spacer(),
                       BlocBuilder<FavouritesBloc, FavouritesState>(
                         builder: (context, state) {
@@ -142,10 +139,6 @@ class FavouritesCardWidget extends StatelessWidget {
                             icon: Assets.iconsClock,
                             onPressed: () {},
                             text: '$minutes'),
-                        DetailsButton(
-                            icon: Assets.iconsStart,
-                            onPressed: () {},
-                            text: '5,0'),
                         DetailsButton(
                             icon: Assets.iconsUser,
                             onPressed: () {},

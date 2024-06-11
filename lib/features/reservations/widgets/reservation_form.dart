@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_multi_formatter/formatters/phone_input_formatter.dart';
 import 'package:get/get_utils/src/extensions/widget_extensions.dart';
 import 'package:go_router/go_router.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:questopia/core/common/widgets/custom_text_field.dart';
 import 'package:questopia/core/extensions/context_extensions.dart';
 import 'package:questopia/core/repositories/slots/domain/reserved_slot_domain.dart';
@@ -19,11 +19,12 @@ class ReservationForm extends StatefulWidget {
     required this.questId,
     required this.selectedSlot,
     required this.chosenDate,
+    required this.showNotification,
   });
 
   final String questId;
-
   final List<String?> selectedSlot;
+  Future<void> showNotification;
   DateTime chosenDate = DateTime.now().copyWith(isUtc: true);
 
   @override
@@ -50,6 +51,10 @@ class _ReservationFormState extends State<ReservationForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _phone = TextEditingController();
   final TextEditingController _countPlayer = TextEditingController();
+  var maskFormatter = MaskTextInputFormatter(
+      mask: '+7 (###) ###-##-##',
+      filter: {"#": RegExp(r'[0-9]')},
+      type: MaskAutoCompletionType.lazy);
 
   @override
   Widget build(BuildContext context) {
@@ -62,18 +67,12 @@ class _ReservationFormState extends State<ReservationForm> {
             bgColor: context.color.onTertiary,
             textInputAction: TextInputAction.next,
             textController: _phone,
-            prefixText: '+7 ',
-            hint: '+7 (000) 000-00-00',
             textInputType: TextInputType.phone,
-            title: 'Телефон',
+            hint: 'Введите номер телефона',
             validator: (value) {
-              return mobileValidator(context, '+7 $value');
+              return mobileValidator(context, value);
             },
-            inputFormatters: [
-              PhoneInputFormatter(
-                defaultCountryCode: 'RU',
-              ),
-            ],
+            inputFormatters: [maskFormatter],
           ).paddingSymmetric(horizontal: 24),
           const SizedBox(height: 16),
           BlocBuilder<SlotsBloc, SlotsState>(
@@ -90,9 +89,8 @@ class _ReservationFormState extends State<ReservationForm> {
                   textController: _countPlayer,
                   bgColor: context.color.onTertiary,
                   textInputAction: TextInputAction.done,
-                  textInputType: TextInputType.number,
-                  title: 'Количество человек',
-                  hint: '3',
+                  textInputType: TextInputType.phone,
+                  hint: 'Введите количество человек',
                   validator: (value) {
                     return countPlayerValidator(
                       context: context,
@@ -119,9 +117,8 @@ class _ReservationFormState extends State<ReservationForm> {
                 textController: _countPlayer,
                 bgColor: context.color.onTertiary,
                 textInputAction: TextInputAction.done,
-                textInputType: TextInputType.number,
-                title: 'Количество человек',
-                hint: '3',
+                textInputType: TextInputType.phone,
+                hint: 'Введите количество человек',
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
                 ],
@@ -151,13 +148,13 @@ class _ReservationFormState extends State<ReservationForm> {
                               ? context.color.tertiary
                               : context.color.tertiary.withOpacity(.4),
                           onPressed: widget.selectedSlot.isNotEmpty
-                              ? () {
+                              ? () async {
                                   if (_formKey.currentState!.validate() &&
                                       widget.selectedSlot.isNotEmpty) {
                                     context.read<ReservedSlotsBloc>().add(
                                           ReservedSlotEvent(
                                             reservedSlot: ReservedSlotDomain(
-                                              phone: '+7 ${_phone.text}',
+                                              phone: _phone.text,
                                               countPlayer:
                                                   int.parse(_countPlayer.text),
                                               idSlot:
@@ -166,6 +163,9 @@ class _ReservationFormState extends State<ReservationForm> {
                                             ),
                                           ),
                                         );
+                                    if (widget.selectedSlot.isNotEmpty) {
+                                      await widget.showNotification;
+                                    }
                                     print('все успешно');
                                   }
                                 }
@@ -187,12 +187,6 @@ class _ReservationFormState extends State<ReservationForm> {
                     }
                     if (state is ReservedSlotsLoadedState) {
                       context.pop();
-                      // scheduleNotification(
-                      //   widget.chosenDate,
-                      //   TimeOfDay.fromDateTime(
-                      //     DateTime.parse('2022-01-01 10:00:00'),
-                      //   ),
-                      // );
                     }
                     return CustomButton(
                       title: 'Забронировать за $totalPrice ₽ ',
@@ -203,7 +197,7 @@ class _ReservationFormState extends State<ReservationForm> {
                           ? context.color.tertiary
                           : context.color.tertiary.withOpacity(.4),
                       onPressed: widget.selectedSlot.isNotEmpty
-                          ? () {
+                          ? () async {
                               if (_formKey.currentState!.validate() &&
                                   widget.selectedSlot.isNotEmpty) {
                                 context.read<ReservedSlotsBloc>().add(
@@ -217,6 +211,9 @@ class _ReservationFormState extends State<ReservationForm> {
                                         ),
                                       ),
                                     );
+                                if (widget.selectedSlot.isNotEmpty) {
+                                  await widget.showNotification;
+                                }
                                 print('все успешно');
                               }
                             }

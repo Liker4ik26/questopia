@@ -5,8 +5,10 @@ import 'package:questopia/core/app/styles/dimensions.dart';
 import 'package:questopia/core/common/widgets/card_image.dart';
 import 'package:questopia/core/common/widgets/custom_text_field.dart';
 import 'package:questopia/core/extensions/context_extensions.dart';
+import 'package:questopia/generated/assets.dart';
 
 import '../../core/app/navigation/routes.dart';
+import '../../core/common/widgets/svg_icon.dart';
 import '../home/widgets/quest_card_widget.dart';
 import 'bloc/search_bloc.dart';
 
@@ -17,24 +19,31 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 0,
         backgroundColor: context.color.backgroundColor,
-        title: Text(
-          'Назад',
-          style: context.text.rfDewiRegular16,
+        automaticallyImplyLeading: false,
+        toolbarHeight: 100,
+        leadingWidth: 68,
+        leading: Center(
+          child: IconButton(
+            style: OutlinedButton.styleFrom(
+              backgroundColor: context.color.onSecondary,
+              shape: RoundedRectangleBorder(
+                borderRadius:
+                BorderRadius.circular(AppDimensions.tinyMedium),
+              ),
+            ),
+            icon: SvgIcon(
+              icon: Assets.iconsChevronLeft,
+              color: context.color.primary,
+            ),
+            onPressed: () => context.pop(),
+          ).paddingOnly(left: 16),
         ),
-        leading: IconButton(
-          style: OutlinedButton.styleFrom(
-            backgroundColor: context.color.onSecondary,
-          ),
-          onPressed: () => context.pop(),
-          icon: const Icon(Icons.arrow_back),
-          color: context.color.primary,
-        ),
+        title: Text('Поиск', style: context.text.rfDewiBold28),
       ),
       body: CustomScrollView(
+        physics: const NeverScrollableScrollPhysics(),
         slivers: [
-          const SliverToBoxAdapter(child: SizedBox(height: 24)),
           SliverToBoxAdapter(
             child: Text('Поиск', style: context.text.rfDewiBold28)
                 .paddingSymmetric(horizontal: 24),
@@ -43,8 +52,7 @@ class SearchScreen extends StatelessWidget {
           SliverToBoxAdapter(
             child: CustomTextField(
               textInputAction: TextInputAction.done,
-              title: '',
-              hint: 'Поиск',
+              hint: 'Введите название квеста...',
               onChanged: (value) {
                 return context.read<SearchBloc>().add(
                       SearchNewsEvent(query: value),
@@ -64,11 +72,18 @@ class SearchScreen extends StatelessWidget {
             bloc: context.read<SearchBloc>(),
             builder: (context, state) {
               if (state is SearchInitialState) {
-                return const SliverFillRemaining(
-                  hasScrollBody: false,
-                  child: Center(
-                    child: Text(
-                      '',
+                return SliverSafeArea(
+                  sliver: SliverFillRemaining(
+                    hasScrollBody: true,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(Assets.imagesSearchScreen),
+                        const SizedBox(height: 10),
+                        Text('Введите название квеста',
+                            style: context.text.rfDewiRegular16),
+                      ],
                     ),
                   ),
                 );

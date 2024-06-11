@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dash/flutter_dash.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:questopia/core/app/styles/dimensions.dart';
 import 'package:questopia/core/common/widgets/card_image.dart';
 import 'package:questopia/core/common/widgets/custom_button.dart';
 import 'package:questopia/core/extensions/context_extensions.dart';
 import 'package:questopia/core/extensions/widget_extensions.dart';
+import 'package:questopia/features/reserved_quest/bloc/delete/delete_bloc.dart';
 import 'package:questopia/features/reserved_quest/widgets/alert_dialog_widget.dart';
 
 import '../../../core/repositories/reserved_quest/data/reserved_quest_repository.dart';
 import '../../../core/repositories/reserved_quest/domain/reserved_quest.dart';
 import '../../reservations/widgets/time_container.dart';
-import '../bloc/reserved_quest_bloc.dart';
 
 class ReservedQuestCard extends StatelessWidget {
   const ReservedQuestCard(
@@ -26,6 +27,15 @@ class ReservedQuestCard extends StatelessWidget {
     DateTime date = DateTime.parse(questDomain.idSlot.date);
     String formattedDate = DateFormat('dd MMMM', 'ru').format(date);
 
+    final slotNoActive = DateTime.now().isAfter(
+      DateTime(
+          int.parse(questDomain.idSlot.date.split('-')[0]),
+          int.parse(questDomain.idSlot.date.split('-')[1]),
+          int.parse(questDomain.idSlot.date.split('-')[2]),
+          int.parse(questDomain.idSlot.time.split(':')[0]),
+          int.parse(questDomain.idSlot.time.split(':')[1]),
+          int.parse(questDomain.idSlot.time.split(':')[2])),
+    );
     return Container(
       decoration: BoxDecoration(
         color: context.color.onSecondary,
@@ -74,7 +84,11 @@ class ReservedQuestCard extends StatelessWidget {
               ),
             ),
             trailing: Text(
-              questDomain.idSlot.status == true ? 'Забронирован' : 'Отменен',
+              slotNoActive == false
+                  ? questDomain.idSlot.status == true
+                      ? 'Забронирован'
+                      : 'Отменен'
+                  : 'Прошел',
               style: context.text.rfDewiRegular14,
             ),
           ),
@@ -132,7 +146,7 @@ class ReservedQuestCard extends StatelessWidget {
               style: context.text.rfDewiRegular14,
             ),
           ),
-          questDomain.idSlot.status == false
+          questDomain.idSlot.status == false || slotNoActive
               ? const SizedBox()
               : CustomButton(
                   bgColor: context.color.primary.withOpacity(.08),
@@ -142,15 +156,17 @@ class ReservedQuestCard extends StatelessWidget {
                       context: context,
                       builder: (BuildContext contextInner) {
                         return BlocProvider(
-                          create: (contextInner) => ReservedQuestBloc(
+                          create: (context) => DeleteBloc(
                               reservedQuestRepository:
-                              contextInner.read<ReservedQuestRepository>()),
-                          child: BlocBuilder<ReservedQuestBloc,
-                              ReservedQuestState>(
-                            builder: (contextInner, state) {
-                              return AlertDialogWidget(
-                                reservedSlotsQuestDomain: questDomain,
-                              );
+                                  context.read<ReservedQuestRepository>()),
+                          child: AlertDialogWidget(
+                            reservedSlotsQuestDomain: questDomain,
+                            onPressed: () {
+                              context.read<DeleteBloc>().add(
+                                    DeleteReservedQuestEvent(
+                                        reservedQuest: questDomain),
+                                  );
+                              contextInner.pop();
                             },
                           ),
                         );

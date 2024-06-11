@@ -18,12 +18,13 @@ class SignInScreen extends StatelessWidget {
           if (state is SignInErrorState) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
+                behavior: SnackBarBehavior.floating,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                     AppDimensions.medium,
                   ),
                 ),
-                backgroundColor: context.color.error.withOpacity(.4),
+                backgroundColor: context.color.error,
                 content: Text(
                   context.tr.signUpScreenErrorHasOccurred +
                       state.error.toString() +
@@ -35,12 +36,13 @@ class SignInScreen extends StatelessWidget {
           if (state is SignInLoadedState) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
+                behavior: SnackBarBehavior.floating,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                     AppDimensions.medium,
                   ),
                 ),
-                backgroundColor: context.color.tertiary.withOpacity(.4),
+                backgroundColor: context.color.tertiary,
                 content: const Text('Успешная авторизация'),
               ),
             );
@@ -50,6 +52,7 @@ class SignInScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 16),
               Text(
                 context.tr.signScreenTitle,
                 style: context.text.rfDewiBold28,

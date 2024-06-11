@@ -7,6 +7,8 @@ import 'package:questopia/features/edit_profile/bloc/edit_profile_bloc.dart';
 import 'package:questopia/features/edit_profile/widgets/edit_profile_form.dart';
 
 import '../../core/app/styles/dimensions.dart';
+import '../../core/common/widgets/svg_icon.dart';
+import '../../generated/assets.dart';
 
 class EditProfileScreen extends StatelessWidget {
   const EditProfileScreen({super.key});
@@ -15,32 +17,39 @@ class EditProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        titleSpacing: 0,
+        toolbarHeight: 100,
         backgroundColor: context.color.backgroundColor,
-        title: Text(
-          'Назад',
-          style: context.text.rfDewiRegular16,
+        automaticallyImplyLeading: false,
+        leadingWidth: 68,
+        leading: Center(
+          child: IconButton(
+            style: OutlinedButton.styleFrom(
+              backgroundColor: context.color.onSecondary,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(AppDimensions.tinyMedium),
+              ),
+            ),
+            icon: SvgIcon(
+              icon: Assets.iconsChevronLeft,
+              color: context.color.primary,
+            ),
+            onPressed: () => context.pop(),
+          ).paddingOnly(left: 24),
         ),
-        leading: IconButton(
-          style: OutlinedButton.styleFrom(
-            backgroundColor: context.color.onSecondary,
-          ),
-          onPressed: () => context.pop(),
-          icon: const Icon(Icons.arrow_back),
-          color: context.color.primary,
-        ),
+        title: Text('Редактирование', style: context.text.rfDewiBold28),
       ),
       body: BlocListener<EditProfileBloc, EditProfileState>(
         listener: (context, state) {
           if (state is EditProfileErrorState) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
+                behavior: SnackBarBehavior.floating,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                     AppDimensions.medium,
                   ),
                 ),
-                backgroundColor: context.color.error.withOpacity(.4),
+                backgroundColor: context.color.error,
                 content: Text(
                   'При сохранении произошла ошибка: ${state.error.toString()}',
                 ),
@@ -51,12 +60,13 @@ class EditProfileScreen extends StatelessWidget {
           if (state is EditProfileLoadedState) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
+                behavior: SnackBarBehavior.floating,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(
                     AppDimensions.medium,
                   ),
                 ),
-                backgroundColor: context.color.tertiary.withOpacity(.4),
+                backgroundColor: context.color.tertiary,
                 content: const Text(
                   'Данные успешно обновлены',
                 ),
@@ -64,13 +74,11 @@ class EditProfileScreen extends StatelessWidget {
             );
           }
         },
-        child: SingleChildScrollView(
+        child: const SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Редактирование', style: context.text.rfDewiBold28)
-                  .paddingSymmetric(horizontal: 24),
-              const EditProfileForm(),
+              EditProfileForm(),
             ],
           ),
         ),

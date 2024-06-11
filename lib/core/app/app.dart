@@ -5,6 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:get_it/get_it.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 import 'package:questopia/core/app/styles/themes.dart';
+import 'package:questopia/core/common/cubit/auth/auth_cubit.dart';
 import 'package:questopia/core/repositories/auth/data/auth_repository.dart';
 import 'package:questopia/core/repositories/auth/data/auth_repository_impl.dart';
 import 'package:questopia/core/repositories/auth/data/remote/supabase_api.dart';
@@ -78,18 +79,30 @@ class App extends StatelessWidget {
                 reservedQuestRepository:
                     context.read<ReservedQuestRepository>()),
           ),
+          BlocProvider(
+            create: (context) => AuthCubit(
+              authRepository: context.read<AuthRepository>(),
+            ),
+          ),
         ],
         child: KeyboardDismisser(
           gestures: const [
             GestureType.onTap,
             GestureType.onPanUpdateDownDirection
           ],
-          child: MaterialApp.router(
-            theme: AppThemes.dark,
-            debugShowCheckedModeBanner: false,
-            routerConfig: Routes.router,
-            localizationsDelegates: AppLocalizations.localizationsDelegates,
-            supportedLocales: AppLocalizations.supportedLocales,
+          child: BlocConsumer<AuthCubit, AuthState>(
+            listener: (context, state) {
+              Routes.router(context).refresh();
+            },
+            builder: (context, state) {
+              return MaterialApp.router(
+                theme: AppThemes.dark,
+                debugShowCheckedModeBanner: false,
+                routerConfig: Routes.router(context),
+                localizationsDelegates: AppLocalizations.localizationsDelegates,
+                supportedLocales: AppLocalizations.supportedLocales,
+              );
+            },
           ),
         ),
       ),

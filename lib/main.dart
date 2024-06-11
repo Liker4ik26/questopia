@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:questopia/core/app/app.dart';
 import 'package:questopia/core/database/model/quest_entity.dart';
 import 'package:questopia/core/repositories/auth/data/remote/supabase_api.dart';
@@ -18,8 +19,17 @@ Future<void> main() async {
   await Hive.initFlutter();
 
   Hive.registerAdapter(QuestEntityAdapter());
-
   await Hive.openBox<QuestEntity>('quest_box');
+  await Permission.location.isDenied.then((value) {
+    if (value) {
+      Permission.location.request();
+    }
+  });
+  await Permission.notification.isDenied.then((value) {
+    if (value) {
+      Permission.notification.request();
+    }
+  });
 
   GetIt.I.registerLazySingletonAsync<Supabase>(
     () => Supabase.initialize(

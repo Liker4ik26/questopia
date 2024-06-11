@@ -6,6 +6,7 @@ import 'package:questopia/core/database/model/quest_entity.dart';
 import 'package:questopia/core/extensions/context_extensions.dart';
 import 'package:questopia/features/favourites/bloc/favourites_bloc.dart';
 import 'package:questopia/features/favourites/widgets/favourites_card.dart';
+import 'package:questopia/generated/assets.dart';
 
 import '../home/widgets/favorites_button.dart';
 
@@ -17,7 +18,7 @@ class FavouritesScreen extends StatelessWidget {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
-          const SliverToBoxAdapter(child: SizedBox(height: 40)),
+          const SliverToBoxAdapter(child: SizedBox(height: 60)),
           SliverToBoxAdapter(
             child: Text('Избранное', style: context.text.rfDewiBold28)
                 .paddingSymmetric(horizontal: 24),
@@ -29,6 +30,24 @@ class FavouritesScreen extends StatelessWidget {
             builder: (context, state) {
               return state.maybeMap(
                 loaded: (state) {
+                  if (state.items.isEmpty) {
+                   return SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(Assets.imagesEmptyFavorite),
+                          const SizedBox(height: 10),
+                          Text('Пока пусто',
+                              style: context.text.rfDewiBold28),
+                          const SizedBox(height: 10),
+                          Text('Добавьте квест в избранное',
+                              style: context.text.rfDewiRegular16),
+                        ],
+                      ),
+                    );
+                  }
                   return SliverSafeArea(
                     top: false,
                     sliver: SliverList.separated(
@@ -119,7 +138,12 @@ class FavouritesScreen extends StatelessWidget {
                 },
               );
             },
-          )
+          ),
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              height: 21,
+            ),
+          ),
         ],
       ),
     );

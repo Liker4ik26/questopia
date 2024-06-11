@@ -22,7 +22,6 @@ class ReservedQuestApi {
     final response = await _supabase.client.from('reserved_slots').select(
         ''' *, slots:id_slot(*, quests:id_quest(*))''').eq('id_user', userId);
     // .order('date',referencedTable: 'slots',ascending: true);
-    print(response);
     final List<dynamic> data = response;
 
     List<ReservedSlotsQuestDomain> questList = data

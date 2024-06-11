@@ -32,10 +32,4 @@ class QuestRepositoryImpl implements QuestRepository {
     final response = await _questApi.searchByName(query: query);
     return response;
   }
-
-  @override
-  Future<List<QuestDomain>> getQuestsWithFilter() async {
-    final response = await _questApi.getQuestsWithFilter();
-    return response;
-  }
 }

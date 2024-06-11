@@ -47,9 +47,6 @@ class _TimeTableCalendarState extends State<TimeTableCalendar> {
         lastDay: lastDay,
         weekendDays: const [DateTime.sunday],
         onDaySelected: widget.onDaySelected,
-        // setState(() {
-        //   widget.chosenDate = selectedDay;
-        // });
         selectedDayPredicate: (day) => isSameDay(
           day,
           widget.chosenDate,
@@ -152,7 +149,29 @@ class _TimeTableCalendarState extends State<TimeTableCalendar> {
             );
           },
         ),
-        headerVisible: false,
+        headerStyle: HeaderStyle(
+          leftChevronIcon: Icon(Icons.chevron_left,
+              color: context.color.primary.withOpacity(0.4)),
+          rightChevronIcon: Icon(
+            Icons.chevron_right,
+            color: context.color.primary.withOpacity(0.4),
+          ),
+          titleTextStyle: context.text.rfDewiRegular16.copyWith(
+            color: context.color.primary.withOpacity(.4),
+          ),
+          formatButtonTextStyle: context.text.rfDewiRegular16.copyWith(
+            color: context.color.primary.withOpacity(.4),
+          ),
+          formatButtonDecoration: BoxDecoration(
+            border: Border.fromBorderSide(
+              BorderSide(
+                color: context.color.primary.withOpacity(0.4),
+              ),
+            ),
+            borderRadius: const BorderRadius.all(Radius.circular(12.0)),
+          ),
+        ),
+        headerVisible: true,
         calendarFormat: _calendarFormat,
         formatAnimationDuration: const Duration(milliseconds: 400),
         formatAnimationCurve: Curves.easeInOut,

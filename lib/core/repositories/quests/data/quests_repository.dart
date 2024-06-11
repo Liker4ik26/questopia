@@ -10,7 +10,6 @@ abstract interface class QuestRepository {
   Future<List<QuestDomain>> searchByName({
     required String query,
   });
-  Future<List<QuestDomain>> getQuestsWithFilter();
 
   Future<QuestDomain> getQuest(String questId);
 }

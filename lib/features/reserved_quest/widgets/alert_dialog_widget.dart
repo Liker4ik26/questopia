@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:questopia/core/app/navigation/routes.dart';
 import 'package:questopia/core/app/styles/dimensions.dart';
 import 'package:questopia/core/common/widgets/custom_button.dart';
@@ -9,12 +8,15 @@ import 'package:questopia/core/extensions/widget_extensions.dart';
 import 'package:questopia/generated/assets.dart';
 
 import '../../../core/repositories/reserved_quest/domain/reserved_quest.dart';
-import '../bloc/reserved_quest_bloc.dart';
 
 class AlertDialogWidget extends StatelessWidget {
-  const AlertDialogWidget({super.key, required this.reservedSlotsQuestDomain});
+  const AlertDialogWidget(
+      {super.key,
+      required this.reservedSlotsQuestDomain,
+      required this.onPressed});
 
   final ReservedSlotsQuestDomain reservedSlotsQuestDomain;
+  final void Function() onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +55,8 @@ class AlertDialogWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: CustomButton(
-                    bgColor: context.color.tertiary,
+                    bgColor: context.color.onTertiary,
+                    titleColor: context.color.primary.withOpacity(.4),
                     title: 'Нет',
                     onPressed: () {
                       context.pop();
@@ -62,42 +65,11 @@ class AlertDialogWidget extends StatelessWidget {
                 ),
                 const SizedBox(width: 10),
                 Expanded(
-                  child: BlocBuilder<ReservedQuestBloc, ReservedQuestState>(
-                    builder: (context, state) {
-                      if (state is ReservedQuestInitialState) {
-                        return CustomButton(
-                          onPressed: () {
-                            context.read<ReservedQuestBloc>().add(
-                                DeleteReservedQuestEvent(
-                                    reservedQuest: reservedSlotsQuestDomain));
-                          },
-                          bgColor: context.color.onTertiary,
-                          title: 'Да',
-                          titleColor: context.color.primary.withOpacity(.4),
-                        );
-                      }
-                      if (state is DeleteReservedQuestLoadingState) {
-                        return CustomButton(
-                          child: CircularProgressIndicator(
-                            color: context.color.primary,
-                          ),
-                        );
-                      }
-                      if (state is DeleteReservedQuestSuccessState) {
-                        context.pop();
-                      }
-                      return CustomButton(
-                        onPressed: () {
-                          context.read<ReservedQuestBloc>().add(
-                                DeleteReservedQuestEvent(
-                                    reservedQuest: reservedSlotsQuestDomain),
-                              );
-                        },
-                        bgColor: context.color.onTertiary,
-                        title: 'Да',
-                        titleColor: context.color.primary.withOpacity(.4),
-                      );
-                    },
+                  child: CustomButton(
+                    onPressed: onPressed,
+                    bgColor: context.color.tertiary,
+                    title: 'Да',
+                    titleColor: context.color.primary,
                   ),
                 ),
               ],

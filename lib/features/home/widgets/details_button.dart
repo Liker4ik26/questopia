@@ -38,6 +38,7 @@ class DetailsButton extends StatelessWidget {
               ),
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 icon != null
                     ? SvgIcon(
@@ -56,6 +57,6 @@ class DetailsButton extends StatelessWidget {
           ),
         ),
       ),
-    ).paddingOnly(right: 6);
+    ).paddingOnly(right: 8);
   }
 }

@@ -24,10 +24,10 @@ class SupabaseApi {
       email: email,
       password: password,
     );
-    await _supabase.client.from('users, users').insert({
-      // 'id': response.user!.id,
-      'FIO': '',
-      'phone': '',
+    await _supabase.client.from('users').insert({
+      'id': response.user!.id,
+      'FIO': 'фио',
+      'phone': 'телефон',
       'email': response.user!.email,
     });
     return response;
@@ -37,9 +37,8 @@ class SupabaseApi {
     print(_supabase.client.auth.onAuthStateChange.map(
       (authState) => authState,
     ));
-    return _supabase.client.auth.onAuthStateChange.map(
-      (authState) => authState,
-    );
+
+    return _supabase.client.auth.onAuthStateChange;
   }
 
   Future<void> signOut() async {

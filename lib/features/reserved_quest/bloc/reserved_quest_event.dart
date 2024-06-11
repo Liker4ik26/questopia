@@ -18,11 +18,3 @@ final class LoadQuestsEvent extends ReservedQuestEvent {
   @override
   List<Object?> get props => super.props..add(completer);
 }
-
-final class DeleteReservedQuestEvent extends ReservedQuestEvent {
-  const DeleteReservedQuestEvent({
-    required this.reservedQuest,
-  });
-
-  final ReservedSlotsQuestDomain reservedQuest;
-}

@@ -24,7 +24,7 @@ final class HomeLoadedState extends HomeState {
   final List<QuestDomain> quests;
 
   @override
-  List<Object?> get props => [quests];
+  List<Object?> get props => super.props..addAll(quests);
 }
 
 final class HomeErrorState extends HomeState {
@@ -33,5 +33,5 @@ final class HomeErrorState extends HomeState {
   final Object? error;
 
   @override
-  List<Object?> get props => [error];
+  List<Object?> get props => super.props..add(error);
 }

@@ -26,6 +26,7 @@ class DetailsQuestScreen extends StatefulWidget {
 
 class _DetailsQuestScreenState extends State<DetailsQuestScreen> {
   final PageController controller = PageController();
+  var questName;
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +45,10 @@ class _DetailsQuestScreenState extends State<DetailsQuestScreen> {
                 builder: (context, state) {
                   if (state is DetailsQuestLoadedState) {
                     return SliverAppBar(
+                      pinned: true,
                       leading: IconButton(
                         style: OutlinedButton.styleFrom(
-                          backgroundColor: context.color.onSecondary,
+                          backgroundColor: context.color.backgroundColor,
                           shape: RoundedRectangleBorder(
                             borderRadius:
                                 BorderRadius.circular(AppDimensions.tinyMedium),
@@ -57,10 +59,10 @@ class _DetailsQuestScreenState extends State<DetailsQuestScreen> {
                           color: context.color.primary,
                         ),
                         onPressed: () => context.pop(),
-                      ),
+                      ).paddingOnly(left: 16,top: 16),
                       expandedHeight: 300,
                       stretch: true,
-                      backgroundColor: context.color.backgroundColor,
+                      backgroundColor: Colors.transparent,
                       flexibleSpace: FlexibleSpaceBar(
                         background: DefaultPageView(
                           controller: controller,
@@ -124,6 +126,7 @@ class _DetailsQuestScreenState extends State<DetailsQuestScreen> {
                   ),
                 builder: (context, state) {
                   if (state is DetailsQuestLoadedState) {
+                    questName = state.quest.name;
                     return SliverToBoxAdapter(
                       child: Column(
                         children: [
@@ -172,184 +175,6 @@ class _DetailsQuestScreenState extends State<DetailsQuestScreen> {
                   );
                 },
               ),
-              // SliverToBoxAdapter(
-              //   child: Row(
-              //     children: [
-              //       Text(
-              //         'Отзывы',
-              //         style: context.text.rfDewiSemiBold16,
-              //       ),
-              //       const Spacer(),
-              //       TextButton(
-              //         onPressed: () {},
-              //         child: Text(
-              //           'Оставить отзыв',
-              //           style: context.text.rfDewiSemiBold16.copyWith(
-              //             color: context.color.tertiary,
-              //           ),
-              //         ),
-              //       ),
-              //     ],
-              //   ).paddingSymmetric(horizontal: 24),
-              // ),
-              // SliverToBoxAdapter(
-              //     child:
-              //     const SizedBox(height: 18).paddingSymmetric(horizontal: 24)),
-              // SliverToBoxAdapter(
-              //   child: Container(
-              //     decoration: BoxDecoration(
-              //       color: context.color.onTertiary,
-              //       borderRadius: BorderRadius.circular(AppDimensions.tinyMedium),
-              //     ),
-              //     child: Row(
-              //       children: [
-              //         Text(
-              //           '5.0',
-              //           style: context.text.rfDewiSemiBold20.copyWith(fontSize: 48),
-              //         ),
-              //         const SizedBox(width: 12),
-              //         Column(
-              //           children: [
-              //             RatingBar(
-              //               itemSize: 16,
-              //               initialRating: 3.5,
-              //               direction: Axis.horizontal,
-              //               allowHalfRating: true,
-              //               itemCount: 5,
-              //               ratingWidget: RatingWidget(
-              //                 full: SvgIcon(
-              //                   icon: Assets.iconsFullStar,
-              //                   color: context.color.onPrimary,
-              //                 ),
-              //                 half: SvgIcon(
-              //                   icon: Assets.iconsHalfStar,
-              //                   color: context.color.onPrimary,
-              //                 ),
-              //                 empty: SvgIcon(
-              //                   icon: Assets.iconsFullStar,
-              //                   color: context.color.primary.withOpacity(.12),
-              //                 ),
-              //               ),
-              //               itemPadding: const EdgeInsets.symmetric(horizontal: 2),
-              //               onRatingUpdate: (rating) {},
-              //             ),
-              //             const SizedBox(height: 8),
-              //             Row(
-              //               mainAxisAlignment: MainAxisAlignment.start,
-              //               children: [
-              //                 Text(
-              //                   '5,0',
-              //                   style: context.text.rfDewiSemiBold12,
-              //                 ),
-              //                 const SizedBox(width: 8),
-              //                 Text(
-              //                   '325 оценок',
-              //                   style: context.text.rfDewiSemiBold12.copyWith(
-              //                       color: context.color.primary.withOpacity(.4)),
-              //                 ),
-              //                 const SizedBox(width: 8),
-              //               ],
-              //             )
-              //           ],
-              //         )
-              //       ],
-              //     ).paddingSymmetric(
-              //       horizontal: 16,
-              //       vertical: 8,
-              //     ),
-              //   ).paddingSymmetric(horizontal: 24),
-              // ),
-              // SliverToBoxAdapter(
-              //     child:
-              //     const SizedBox(height: 60).paddingSymmetric(horizontal: 24)),
-              // SliverToBoxAdapter(
-              //   child: SafeArea(
-              //     child: Container(
-              //       decoration: BoxDecoration(
-              //         color: context.color.onTertiary,
-              //         borderRadius: BorderRadius.circular(AppDimensions.tinyMedium),
-              //       ),
-              //       child: Column(
-              //         children: [
-              //           Row(
-              //             children: [
-              //               ClipRRect(
-              //                 child: CardImage(
-              //                   height: 40,
-              //                   width: 40,
-              //                   borderRadius:
-              //                   BorderRadius.circular(AppDimensions.circle),
-              //                   imageUrl:
-              //                   'https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666362646_46-mykaleidoscope-ru-p-blagodarnost-emotsiya-vkontakte-48.jpg',
-              //                   fit: BoxFit.cover,
-              //                 ),
-              //               ),
-              //               const SizedBox(width: 16),
-              //               Column(
-              //                 crossAxisAlignment: CrossAxisAlignment.start,
-              //                 children: [
-              //                   Text(
-              //                     'Филипп Жмудин',
-              //                     style: context.text.rfDewiSemiBold16,
-              //                     softWrap: true,
-              //                     maxLines: 2,
-              //                   ),
-              //                   const SizedBox(height: 6),
-              //                   Row(
-              //                     children: [
-              //                       RatingBar(
-              //                         itemSize: 16,
-              //                         initialRating: 3.5,
-              //                         direction: Axis.horizontal,
-              //                         allowHalfRating: true,
-              //                         itemCount: 5,
-              //                         ratingWidget: RatingWidget(
-              //                           full: SvgIcon(
-              //                             icon: Assets.iconsFullStar,
-              //                             color: context.color.onPrimary,
-              //                           ),
-              //                           half: SvgIcon(
-              //                             icon: Assets.iconsHalfStar,
-              //                             color: context.color.onPrimary,
-              //                           ),
-              //                           empty: SvgIcon(
-              //                             icon: Assets.iconsFullStar,
-              //                             color: context.color.onPrimary
-              //                                 .withOpacity(.4),
-              //                           ),
-              //                         ),
-              //                         itemPadding:
-              //                         const EdgeInsets.symmetric(horizontal: 2),
-              //                         onRatingUpdate: (rating) {},
-              //                       ),
-              //                       const SizedBox(width: 4),
-              //                       Text(
-              //                         '24.04.2024',
-              //                         style: context.text.rfDewiRegular10.copyWith(
-              //                           color:
-              //                           context.color.primary.withOpacity(.4),
-              //                         ),
-              //                       )
-              //                     ],
-              //                   ),
-              //                 ],
-              //               ),
-              //             ],
-              //           ).paddingSymmetric(
-              //             horizontal: 16,
-              //             vertical: 8,
-              //           ),
-              //           Text(
-              //             'Отличный квест! Море эмоций, интересные загадки, демон крут!) Атмосфера шик, советую к прохождению)',
-              //             style: context.text.rfDewiRegular14.copyWith(
-              //               color: context.color.primary.withOpacity(.4),
-              //             ),
-              //           ).paddingOnly(left: 16, right: 16, top: 12, bottom: 16),
-              //         ],
-              //       ),
-              //     ).paddingSymmetric(horizontal: 24),
-              //   ),
-              // ),
             ],
           ),
           Align(
@@ -371,6 +196,7 @@ class _DetailsQuestScreenState extends State<DetailsQuestScreen> {
                       builder: (context) {
                         return ReservationsScreen(
                           questId: widget.questId,
+                          questTitle: questName,
                         );
                       },
                     );

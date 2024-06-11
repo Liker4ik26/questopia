@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:questopia/core/app/navigation/routes.dart';
 import 'package:questopia/core/app/styles/dimensions.dart';
 import 'package:questopia/core/extensions/context_extensions.dart';
 import 'package:questopia/features/auth/sign_up/bloc/sign_up_bloc.dart';
@@ -29,7 +28,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     AppDimensions.medium,
                   ),
                 ),
-                backgroundColor: context.color.error.withOpacity(.4),
+                backgroundColor: context.color.error,
                 content: Text(
                   context.tr.signUpScreenErrorHasOccurred +
                       state.error.toString() +
@@ -46,7 +45,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     AppDimensions.medium,
                   ),
                 ),
-                backgroundColor: context.color.tertiary.withOpacity(.4),
+                backgroundColor: context.color.tertiary,
                 content: Text(
                   context.tr.signUpScreenYouRegistered,
                 ),
@@ -58,6 +57,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              const SizedBox(height: 16),
               Text(
                 context.tr.signUpScreenTitle,
                 style: context.text.rfDewiBold28,

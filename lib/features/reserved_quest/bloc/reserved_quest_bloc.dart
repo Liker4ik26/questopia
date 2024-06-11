@@ -7,7 +7,6 @@ import 'package:questopia/core/repositories/reserved_quest/data/reserved_quest_r
 import 'package:questopia/core/repositories/reserved_quest/domain/reserved_quest.dart';
 
 part 'reserved_quest_event.dart';
-
 part 'reserved_quest_state.dart';
 
 class ReservedQuestBloc extends Bloc<ReservedQuestEvent, ReservedQuestState> {
@@ -15,7 +14,6 @@ class ReservedQuestBloc extends Bloc<ReservedQuestEvent, ReservedQuestState> {
       : _reservedQuestRepository = reservedQuestRepository,
         super(const ReservedQuestInitialState()) {
     on<LoadQuestsEvent>(_loadReservedQuests);
-    on<DeleteReservedQuestEvent>(_deleteReservedQuest);
   }
 
   Future<void> _loadReservedQuests(
@@ -37,19 +35,6 @@ class ReservedQuestBloc extends Bloc<ReservedQuestEvent, ReservedQuestState> {
       emit(ReservedQuestErrorState(error: e));
     } finally {
       event.completer?.complete();
-    }
-  }
-
-  Future<void> _deleteReservedQuest(
-    DeleteReservedQuestEvent event,
-    Emitter<ReservedQuestState> emit,
-  ) async {
-    try {
-      emit(const DeleteReservedQuestLoadingState());
-      await _reservedQuestRepository.deleteReservedQuest(event.reservedQuest);
-      emit(const DeleteReservedQuestSuccessState());
-    } catch (e) {
-      emit(DeleteReservedQuestErrorState(error: e));
     }
   }
 

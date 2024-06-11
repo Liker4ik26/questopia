@@ -13,7 +13,7 @@ class CategoryChip extends StatelessWidget {
 
   final String text;
   final bool selected;
-  final void Function(bool)? onSelected;
+  final void Function(bool?)? onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +29,7 @@ class CategoryChip extends StatelessWidget {
       label: Text(
         text,
         style: context.text.rfDewiRegular16.copyWith(
-          color:  context.color.primary
-             ,
+          color: context.color.primary,
         ),
       ),
       onSelected: onSelected,

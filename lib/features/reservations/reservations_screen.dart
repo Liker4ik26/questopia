@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 import 'package:questopia/core/app/styles/dimensions.dart';
 import 'package:questopia/core/extensions/context_extensions.dart';
 import 'package:questopia/core/extensions/widget_modifier.dart';
@@ -10,11 +12,15 @@ import 'package:questopia/features/reservations/blocs/slots/slots_bloc.dart';
 import 'package:questopia/features/reservations/widgets/calendar.dart';
 import 'package:questopia/features/reservations/widgets/reservation_form.dart';
 import 'package:questopia/features/reservations/widgets/time_container.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class ReservationsScreen extends StatefulWidget {
-  const ReservationsScreen({super.key, required this.questId});
+  const ReservationsScreen(
+      {super.key, required this.questId, required this.questTitle});
 
   final String questId;
+  final String questTitle;
 
   @override
   State<ReservationsScreen> createState() => _ReservationsScreenState();
@@ -24,10 +30,48 @@ class _ReservationsScreenState extends State<ReservationsScreen> {
   bool isSelected = false;
   List<String> selectedSlot = [];
   DateTime chosenDate = DateTime.now().copyWith(isUtc: true);
+  FlutterLocalNotificationsPlugin localNotifications =
+      FlutterLocalNotificationsPlugin();
+  String slotTime = "";
 
   @override
   void initState() {
     super.initState();
+    var androidInitialize =
+        const AndroidInitializationSettings('@mipmap/ic_launcher');
+    var initializationSettings =
+        InitializationSettings(android: androidInitialize);
+    localNotifications = FlutterLocalNotificationsPlugin();
+    localNotifications.initialize(initializationSettings);
+  }
+
+  Future<void> showNotification() async {
+    var androidDetails = const AndroidNotificationDetails(
+      "Chanel ID",
+      "Description",
+      channelDescription: 'jfirej',
+      importance: Importance.max,
+      priority: Priority.high,
+      icon: '@mipmap/launcher_icon',
+    );
+    var generalDetails = NotificationDetails(android: androidDetails);
+    tz.initializeTimeZones();
+    await localNotifications.zonedSchedule(
+      0,
+      'Вы забронировали квест ${widget.questTitle}!',
+      'Ваш квест был забронирован на  ${DateFormat('dd MMMM yyyy', 'ru').format(chosenDate)}, время: ${convertTimeFormat(slotTime)}!',
+      tz.TZDateTime.utc(chosenDate.year, chosenDate.month, chosenDate.day).add(
+        const Duration(
+          days: -1,
+          hours: 12,
+          minutes: 30,
+        ),
+      ),
+      generalDetails,
+      androidScheduleMode: AndroidScheduleMode.exact,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+    );
   }
 
   @override
@@ -50,12 +94,13 @@ class _ReservationsScreenState extends State<ReservationsScreen> {
             if (state is ReservedSlotsErrorState) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
+                  behavior: SnackBarBehavior.floating,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                       AppDimensions.medium,
                     ),
                   ),
-                  backgroundColor: context.color.error.withOpacity(.4),
+                  backgroundColor: context.color.error,
                   content: Text(
                     ' Произошла ошибка при бронировании квеста: ${state.error.toString()}' +
                         'Попробуйте позже',
@@ -66,12 +111,13 @@ class _ReservationsScreenState extends State<ReservationsScreen> {
             if (state is ReservedSlotsLoadedState) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
+                  behavior: SnackBarBehavior.floating,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                       AppDimensions.medium,
                     ),
                   ),
-                  backgroundColor: context.color.tertiary.withOpacity(.4),
+                  backgroundColor: context.color.tertiary,
                   content: const Text('Квест успешно забронирован!'),
                 ),
               );
@@ -102,7 +148,9 @@ class _ReservationsScreenState extends State<ReservationsScreen> {
                           style: OutlinedButton.styleFrom(
                               backgroundColor: context.color.onTertiary,
                               foregroundColor: context.color.primary),
-                          onPressed: () => context.pop(),
+                          onPressed: () {
+                            context.pop();
+                          },
                           icon: const Icon(Icons.close),
                         ),
                       ],
@@ -178,13 +226,17 @@ class _ReservationsScreenState extends State<ReservationsScreen> {
                                         selectedSlot.remove(selectedSlot.last);
                                         selectedSlot.add(slot.idSlot);
                                       }
+                                      slotTime = selectedSlot
+                                          .contains(state.slots[index].idSlot)
+                                          ? slot.time
+                                          : "";
                                     });
                                   },
                                   isSelected: selectedSlot
                                           .contains(state.slots[index].idSlot)
                                       ? true
                                       : false,
-                                  slotDomain: slot,
+                                  slotDomain: slot, chosenDate: chosenDate,
                                 );
                               }),
                             ).paddingSymmetric(horizontal: 24),
@@ -210,6 +262,7 @@ class _ReservationsScreenState extends State<ReservationsScreen> {
                     questId: widget.questId,
                     selectedSlot: selectedSlot,
                     chosenDate: chosenDate,
+                    showNotification: showNotification(),
                   ).sliver,
                 ],
               );
