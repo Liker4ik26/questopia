@@ -44,18 +44,18 @@ class QuestCardWidget extends StatelessWidget {
           height: 240,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppDimensions.tinyMedium),
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              stops: const [
-                .1,
-                .7,
-              ],
-              colors: [
-                Colors.black.withOpacity(.4),
-                Colors.black.withOpacity(.6),
-              ],
-            ),
+            // gradient: LinearGradient(
+            //   begin: Alignment.topCenter,
+            //   end: Alignment.bottomCenter,
+            //   stops: const [
+            //     .1,
+            //     .7,
+            //   ],
+            //   colors: [
+            //     Colors.black.withOpacity(.4),
+            //     Colors.black.withOpacity(.6),
+            //   ],
+            // ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,7 +92,7 @@ class QuestCardWidget extends StatelessWidget {
               Text(
                 questDomain.typeOfGame.nameOfType,
                 style: context.text.rfDewiRegular12.copyWith(
-                  color: context.color.primary.withOpacity(.46),
+                  color: context.color.primary,
                 ),
               ).paddingOnly(
                 left: 13,

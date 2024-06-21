@@ -226,8 +226,8 @@ class _ReservationsScreenState extends State<ReservationsScreen> {
                                         selectedSlot.remove(selectedSlot.last);
                                         selectedSlot.add(slot.idSlot);
                                       }
-                                      slotTime = selectedSlot
-                                          .contains(state.slots[index].idSlot)
+                                      slotTime = selectedSlot.contains(
+                                              state.slots[index].idSlot)
                                           ? slot.time
                                           : "";
                                     });
@@ -236,7 +236,8 @@ class _ReservationsScreenState extends State<ReservationsScreen> {
                                           .contains(state.slots[index].idSlot)
                                       ? true
                                       : false,
-                                  slotDomain: slot, chosenDate: chosenDate,
+                                  slotDomain: slot,
+                                  chosenDate: chosenDate,
                                 );
                               }),
                             ).paddingSymmetric(horizontal: 24),
