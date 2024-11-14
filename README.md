@@ -18,99 +18,129 @@
 
 ## 📌 Description 
 
-**Questopia** is a mobile app developed using **Flutter**, designed for the convenient and fast ordering of coffee and other beverages. It creates a unique experience for users by offering not only the ability to choose their favorite drinks but also to find the nearest coffee shops on the map for placing an order, significantly simplifying the process of getting their desired coffee.
+**Questopia** is a mobile app developed using **Flutter**. This powerful and user-friendly app is perfect for all escape room enthusiasts. It not only allows you to search for and book adventure games, but also helps you manage them with maximum convenience. The app lets you add your favorite escape rooms to a wishlist, easily filter by various criteria, and cancel bookings if your plans change.
 
-- 🏆 **Platforms**: Android
-- 🔗 **Hive**: All coffee shops are located on the map.
-- 🎨 **Dark and Light Themes**: For comfortable use at any time of day.
+- 📱 **Platforms**: Android
+- 🔒 **Hive**: Stores favorite quests
+- ☁️ **Supabase**: Stores all information about quests.
+- 🔔 **Local notifications**: Reminds users about booked quests via notifications
 
 ---
 
 ## 🚀 Features 
 
 - **User-friendly Interface** 🖥️ Intuitive design with easy navigation makes ordering your favorite coffee fast and simple.
-- **Map-based Coffee Shop Finder** 🗺️ Easily find nearby coffee shops on the map and place your order directly from the app.
-- **Wide Selection of Beverages** ⏳ Choose from a variety of coffee drinks, including espresso, cappuccino, latte, iced coffee, and more.
-- **Dark & Light Theme Options** 🌚🌞 Switch between dark and light modes for a more comfortable user experience, day or night.
+- **Supabase** ☁️  Stores and manages data, ensuring fast and easy access to quests.
+- **Email confirmation** 📧  Allows you to confirm your email to secure your account.
+- **Local notifications** 🔔  Enables reminders about your booked quests.
 
 ---
 
 ## 🌟 Key Features
 
-### 1. **Order Placement** 📝
+### 1. **Email Registration and Login with Supabase** 📧
 
-The app allows users to easily place an order for their favorite drinks. After selecting your items, you can quickly proceed to checkout, where all your customizations, such as milk type and sweetness level, will be applied.
+Users can easily register or log in using their email address. After registration, they will receive a confirmation email to verify their account. Supabase handles all authentication and account management.
 
-| Light Theme | Dark Theme |
-|-------------|------------|
-| ![Order Placement Example (Light Theme)](https://github.com/user-attachments/assets/881941f9-bb7e-4888-b45f-69d4f74376da)  | ![Order Placement Example (Dark Theme)](https://github.com/user-attachments/assets/d7047cd7-cc8e-4851-9346-97c2907d24cf)  |
-| *Example of placing an order (Light Theme)* | *Example of placing an order (Dark Theme)* |
-
----
-
-### 2. **Product Quantity Selection** 🔢
-
-Choose the exact quantity of each item you want to order. Whether it's a single coffee or a group order, the app allows you to adjust the number of items in your cart before proceeding to checkout, ensuring an accurate order.
-
-| Light Theme | Dark Theme |
-|-------------|------------|
-| ![Product Quantity Selection (Light Theme)](https://github.com/user-attachments/assets/90b5d11c-8498-4158-800f-169f8aa2b007)  | ![Product Quantity Selection (Dark Theme)]([https://example.com/quantity-selection-dark.mp4](https://github.com/user-attachments/assets/7a2c671a-9b22-4ad2-b1ea-2cadd075ef5d))  |
-| *Video showing how to select quantity (Light Theme)* | *Video showing how to select quantity (Dark Theme)* |
+| Registration | Login | Confirmation |
+|--------------|-------|--------------|
+| ![Email Registration Example 1](https://github.com/user-attachments/assets/69d98b54-3937-464b-b844-9ace93973ad3) | ![Email Registration Example 2](https://github.com/user-attachments/assets/d8f5df92-ab6f-4d37-b866-d630d0774dc6) | ![Email Registration Example 3](https://github.com/user-attachments/assets/ccc4c8ef-d189-43e8-a416-c40e56e8a8e3) |
+| *Example of email registration* | *Example of email login* | *Example of email confirmation* |
 
 ---
 
-### 3. **Clear Cart Option** 🧹
+### 2. **Quest Filtering** 🔍
 
-If you change your mind or want to start fresh, the app provides an easy way to clear your cart. With just one tap, you can remove all items from your cart and begin selecting again, making it simple to reset your order.
+Easily filter quests by various parameters, such as difficulty level or type, to find the perfect adventure. This helps users narrow down their choices and find quests that best match their preferences.
 
-| Light Theme | Dark Theme |
-|-------------|------------|
-| ![Clear Cart Option (Light Theme)](https://github.com/user-attachments/assets/8a4df6f7-716d-4485-aeff-698d212a4ea9)  | ![Clear Cart Option (Dark Theme)](https://github.com/user-attachments/assets/165574ca-b5d4-4bc3-ba9e-b3e2bd9cc650)  |
-| *Image of the option to clear cart (Light Theme)* | *Image of the option to clear cart (Dark Theme)* |
+| **Quest Filtering** |
+|---------------------|
+| ![Quest Filtering Example](https://github.com/user-attachments/assets/34839f82-cc68-4507-a05f-4a1630b05d71) |
+| *Example of quest filtering* |
 
----
-
-### 4. **Category Selection** 🗂️
-
-The app organizes its offerings into clear categories, such as "Tea", "Black Coffee", "Milk Coffee", and "Espresso". Users can easily navigate through different categories to find exactly what they’re looking for, streamlining the selection process and providing a well-structured menu.
-
-| Light Theme | Dark Theme |
-|-------------|------------|
-| ![Category Selection (Light Theme)](https://github.com/user-attachments/assets/b5de818f-e560-4c5b-94d9-65737098e0ed)  | ![Category Selection (Dark Theme)](https://github.com/user-attachments/assets/470ee7f7-c0ae-462d-b4b5-46101f0d508c)  |
-| *Image of the category selection screen (Light Theme)* | *Image of the category selection screen (Dark Theme)* |
 
 ---
 
-### 5. **Automatic Location Detection** 📍
+### 3. **Category Selection** 📂
 
-Coffeemania automatically detects your current location using GPS technology. This feature simplifies the ordering process by showing nearby coffee shops on the map based on your location, so you can quickly select the most convenient one without searching manually.
+Select from various categories of quests, such as scary, kid-friendly, or beginner-friendly. This allows users to quickly browse the types of quests they are most interested in.
 
-| Light Theme | Dark Theme |
-|-------------|------------|
-| ![Automatic Location Detection (Light Theme)](https://github.com/user-attachments/assets/304a4be8-3f86-434b-9699-fa23b3f96ab9)  | ![Automatic Location Detection (Dark Theme)](https://github.com/user-attachments/assets/395c117e-93c6-4468-984a-8f5d27aedad1)  |
-| *Image of map showing nearby coffee shops (Light Theme)* | *Image of map showing nearby coffee shops (Dark Theme)* |
+| **Category Selection** |
+|------------------------|
+| ![Category Selection Example](https://github.com/user-attachments/assets/750302f3-5a87-4ea6-8630-f41415e29fb0) |
+| *Example of selecting a quest category* |
 
----
-
-### 6. **Coffee Shop Selection on the Map** 🗺️
-
-Users can view and select a nearby coffee shop directly on the map. The app displays coffee shops around your location, and you can tap on any to see additional details (such as the address and available drinks). This feature makes it easy to choose and order from the closest coffee shop.
-
-| Light Theme | Dark Theme |
-|-------------|------------|
-| ![Coffee Shop on Map (Light Theme)](https://github.com/user-attachments/assets/b3503ab1-7a31-4418-8975-4350bdc19552)  | ![Coffee Shop on Map (Dark Theme)](https://github.com/user-attachments/assets/7ec955b1-67ac-4209-9d0e-72f49ba9321b)  |
-| *Example of selecting a coffee shop on the map (Light Theme)* | *Example of selecting a coffee shop on the map (Dark Theme)* |
 
 ---
 
-### 7. **View and Select Coffee Shops from List** 📜
+### 4. **Book a Quest** 📅
 
-In addition to the map view, Coffeemania provides a list view of nearby coffee shops. You can scroll through the list, view key details like address and ratings, and choose the coffee shop you wish to order from. This option offers a text-based alternative for those who prefer a simpler interface.
+Once you've selected your desired quest, you can easily book it directly from the app. Choose the date and time, enter your phone number, then complete your booking.
 
-| Light Theme | Dark Theme |
-|-------------|------------|
-| ![Coffee Shop List (Light Theme)](https://github.com/user-attachments/assets/4963dd4a-5a2a-40c7-a6f4-38ecaa99450f)  | ![Coffee Shop List (Dark Theme)](https://github.com/user-attachments/assets/80095563-c463-4272-bf7f-da1a9ad9e507)  |
-| *Image of coffee shop list view (Light Theme)* | *Image of coffee shop list view (Dark Theme)* |
+| **Book a Quest** |
+|------------------|
+| ![Book a Quest Example](https://github.com/user-attachments/assets/153f7720-8453-46c8-b200-6e493a58f7fa) |
+| *Example of booking a quest* |
+
+
+---
+
+### 5. **Cancel a Quest** ❌
+
+If plans change, you can cancel your booked quest directly from the app.
+
+| **Cancel a Quest** |
+|--------------------|
+| ![Cancel a Quest Example](https://github.com/user-attachments/assets/3c5ddcca-acf7-44dd-b3fd-46813b9aace1) |
+| *Example of cancelling a quest* |
+
+
+---
+
+### 6. **Add and Remove Quests from Favorites** 💖
+
+You can mark quests as favorites, making it easy to return to them later. Add or remove quests from your favorites with a single tap.
+
+| **Add to Favorites** |
+|----------------------|
+| ![Add to Favorites Example](https://github.com/user-attachments/assets/61543c25-2bda-4630-90ce-5fb69578ff76) |
+| *Example of adding a quest to favorites* |
+
+
+---
+
+### 7. **Profile Editing** ✏️
+
+Edit your personal information, such as full name and phone number, directly in the app.
+
+| **Profile Editing** |
+|---------------------|
+| ![Profile Editing Example](https://github.com/user-attachments/assets/d3130457-794f-40dc-87a5-81ccfd4154a9) |
+| *Example of editing user profile* |
+
+
+---
+
+### 8. **Quest Search** 🔍
+
+Search for quests by name. The app provides a quick and intuitive search feature to help you find exactly the quest you're looking for.
+
+| **Quest Search** |
+|------------------|
+| ![Quest Search Example](https://github.com/user-attachments/assets/0fad0762-9299-4b8c-9fe9-510c75348228) |
+| *Example of quest search* |
+
+
+---
+
+### 9. **Logout** 🚪
+
+When you're done, you can log out of your account with a single tap.
+
+| **Logout** |
+|------------|
+| ![Logout Example](https://github.com/user-attachments/assets/6ad1d1dc-99d7-4754-ad92-1985ca568f9a) |
+| *Example of logging out* |
 
 ---
 
@@ -127,7 +157,7 @@ In addition to the map view, Coffeemania provides a list view of nearby coffee s
 2. **Clone the project repository:**
    Download or clone the project source code:
    ```bash
-   git clone https://github.com/Liker4ik26/coffeemania.git
+   git clone https://github.com/Liker4ik26/questopia.git
    cd taskmaster
    ```
    
@@ -153,18 +183,17 @@ In addition to the map view, Coffeemania provides a list view of nearby coffee s
 
 ## 🧑‍💻 Technical Details
 
-**Coffeemania** uses the following technologies:
+**Questopia** uses the following technologies:
 
 - **Flutter** — for cross-platform development
-- **yandex_mapkit** — for displaying the current location and coffee shop points on the map
-- **Riverpod** — for state management
-- **Realm** — for storing cart items
-- **Navigator** — for project navigation
--  **Dio** — for making network requests
-- **Flutter_cache_manager** — for caching cart items
-- **Shared_preferences** — for storing user address
-- **Injectable** — for Dependency Injection (DI)
+- **Supabase** — remote database
+- **Bloc** — for state management
+- **Hive** — for storing favorites
+- **GoRoute** — for project navigation
+- **Dio** — for making network requests
+- **Get it** — for Dependency Injection (DI)
 - **flutter_dotenv** — for managing .env files
+- **flutter_local_notifications** — reminders for booked quests
 ---
 
 ## 🤝 Contributing to the Project
