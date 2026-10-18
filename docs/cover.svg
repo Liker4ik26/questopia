@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="330" viewBox="0 0 1200 330" role="img" aria-label="Questopia — Escape-room discovery and booking">
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#191329"/><stop offset="1" stop-color="#132d44"/></linearGradient><linearGradient id="a"><stop stop-color="#b18bff"/><stop offset="1" stop-color="#69d8ff"/></linearGradient></defs>
+<rect width="1200" height="330" rx="22" fill="url(#bg)"/>
+<g fill="none" stroke="url(#a)" opacity=".35"><circle cx="1060" cy="165" r="105"/><ellipse cx="1060" cy="165" rx="165" ry="70" transform="rotate(-35 1060 165)"/><ellipse cx="1060" cy="165" rx="165" ry="70" transform="rotate(35 1060 165)"/></g>
+<circle cx="1142" cy="99" r="6" fill="#77d7ff"/>
+<text x="55" y="59" font-family="Arial,sans-serif" font-size="16" fill="#b9bbdc" letter-spacing="2">FLUTTER · PERSONAL PROJECT</text>
+<text x="51" y="144" font-family="Arial,sans-serif" font-size="60" font-weight="700" fill="#f3efff">Questopia</text>
+<text x="55" y="194" font-family="Arial,sans-serif" font-size="25" fill="url(#a)">Escape-room discovery and booking</text>
+<path d="M55 231h160" stroke="url(#a)" stroke-width="3"/>
+<text x="55" y="278" font-family="Arial,sans-serif" font-size="18" fill="#ccd5e9">Anzhelika Semenova · Liker4ik26</text>
+<rect x="1" y="1" width="1198" height="328" rx="21" stroke="url(#a)" stroke-opacity=".5" fill="none"/>
+</svg>
