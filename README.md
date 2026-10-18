@@ -12,10 +12,11 @@
 
 ## Как выглядит проект
 
-| Интерфейс | Сценарии |
-| :---: | :---: |
-| <img src="docs/screenshots/questopia-1.webp" alt="Questopia — изображение 1 из портфолио" width="340"/><br/>Экран 1 | <img src="docs/screenshots/questopia-2.webp" alt="Questopia — изображение 2 из портфолио" width="340"/><br/>Экран 2 |
-| <img src="docs/screenshots/questopia-3.webp" alt="Questopia — изображение 3 из портфолио" width="340"/><br/>Экран 3 | <img src="docs/screenshots/questopia-4.webp" alt="Questopia — изображение 4 из портфолио" width="340"/><br/>Экран 4 |
+![Questopia — обзор проекта](docs/screenshots/questopia-1.webp)
+
+| Каталог и поиск | Интерфейс приложения | Пользовательские сценарии |
+| :---: | :---: | :---: |
+| <img src="docs/screenshots/questopia-2.webp" alt="Questopia — экран из портфолио" width="230"/> | <img src="docs/screenshots/questopia-3.webp" alt="Questopia — интерфейс из портфолио" width="230"/> | <img src="docs/screenshots/questopia-4.webp" alt="Questopia — сценарий из портфолио" width="230"/> |
 
 Изображения взяты из [моего сайта-портфолио](https://portfolio.semenova-anzhelika.online/#personal).
 
